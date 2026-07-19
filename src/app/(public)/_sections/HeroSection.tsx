@@ -1,3 +1,3 @@
 export const HeroSection = () => {
-  return <div>HeroSection</div>
+  return <div className="container">HeroSection</div>
 }

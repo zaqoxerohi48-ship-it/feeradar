@@ -1,4 +1,4 @@
-import { gasFeesSchema } from '@/app/features/gas-fees/types/types'
+import { gasFeesSchema } from '@/modules/gas-fees/types/types'
 
 export async function GET() {
   const feesUrl = process.env.INFURA_ETH_FEES_URL
@@ -21,7 +21,7 @@ export async function GET() {
 
     if (!parsed.success) {
       console.error('Unexpected fee provider response shape', parsed.error)
-      return Response.json({ error: { message: 'Invalid data from provider' } }, { status: 502 })
+      return Response.json({ error: { message: `Invalid data from provider ${raw}` } }, { status: 502 })
     }
 
     return Response.json(parsed.data)

@@ -7,6 +7,12 @@ const feeLevelSchema = z.object({
   maxWaitTimeEstimate: z.number()
 })
 
+const feeTrendSchema = z
+  .string()
+  .trim()
+  .transform((value) => value.toLowerCase() || 'stable')
+  .catch('stable')
+
 export const gasFeesSchema = z.object({
   low: feeLevelSchema,
   medium: feeLevelSchema,
@@ -16,9 +22,9 @@ export const gasFeesSchema = z.object({
   latestPriorityFeeRange: z.tuple([z.string(), z.string()]),
   historicalPriorityFeeRange: z.tuple([z.string(), z.string()]),
   historicalBaseFeeRange: z.tuple([z.string(), z.string()]),
-  priorityFeeTrend: z.enum(['up', 'down']),
-  baseFeeTrend: z.enum(['up', 'down']),
-  version: z.string()
+  priorityFeeTrend: feeTrendSchema,
+  baseFeeTrend: feeTrendSchema,
+  version: z.string().optional()
 })
 
 export type GasFees = z.infer<typeof gasFeesSchema>
