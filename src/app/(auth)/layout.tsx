@@ -1,7 +1,7 @@
 import { PublicFooter } from '@/widgets/public-footer/PublicFooter'
 import { PublicHeader } from '@/widgets/public-header/PublicHeader'
 
-export default function PublicLayout({
+export default function AuthLayout({
   children
 }: Readonly<{
   children: React.ReactNode

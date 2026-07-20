@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FeeRadar
+
+FeeRadar is a full-stack web application for comparing crypto card fees and tracking blockchain gas fees.
+
+This is my first independent full-stack project. I mainly work with React and Vue on the frontend, so this project is also a way for me to practice backend development, databases, authentication, and server-side logic.
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- pnpm
+- Prisma
+- Neon PostgreSQL
+- Auth.js
+- TanStack Query
+- Tailwind CSS
+- shadcn/ui
+
+## Features
+
+- Crypto card fee comparison
+- Gas fee tracking
+- Network congestion information
+- Authentication
+- Database integration
+- Responsive UI
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env` file and add the required environment variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+DATABASE_URL="your-database-url"
+AUTH_SECRET="your-auth-secret"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Generate Prisma Client:
 
-## Learn More
+```bash
+pnpm prisma generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+Run database migrations:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm prisma migrate dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Start the development server:
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open http://localhost:3000.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Status
+
+The project is currently under development.

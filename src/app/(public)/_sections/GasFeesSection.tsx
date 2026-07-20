@@ -1,4 +1,4 @@
-import { GasFeesCard } from '@/modules/gas-fees/ui/GasFeesCard'
+import { GasFeesCard } from "@/features/gas-fees/ui/GasFeesCard"
 
 export const GasFeesSection = () => {
   return (

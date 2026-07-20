@@ -1,4 +1,4 @@
-import { gasFeesSchema } from '@/modules/gas-fees/types/types'
+import { gasFeesSchema } from '@/features/gas-fees/types/types'
 
 export async function GET() {
   const feesUrl = process.env.INFURA_ETH_FEES_URL
