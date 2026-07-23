@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next'
 
-const SITE_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
+const SITE_URL = process.env.DOMAIN_URL
 
 if (!SITE_URL) {
-  throw new Error('NEXT_PUBLIC_DOMAIN_URL is not defined')
+  throw new Error('DOMAIN_URL is not defined')
 }
 
 export default function robots(): MetadataRoute.Robots {

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 
 const SITE_NAME = 'FeeRadar'
-const SITE_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
+const SITE_URL = process.env.DOMAIN_URL
 const DEFAULT_DESCRIPTION = 'Track blockchain fees and crypto card fee rates with FeeRadar'
 const DEFAULT_OG_IMAGE = '/og-image.png'
 const DEFAULT_LOCALE = 'en_US'
 
 if (!SITE_URL) {
-  throw new Error('NEXT_PUBLIC_DOMAIN_URL is not defined')
+  throw new Error('DOMAIN_URL is not defined')
 }
 
 interface BuildMetadataParams {

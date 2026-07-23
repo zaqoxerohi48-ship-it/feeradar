@@ -1,4 +1,4 @@
-import { Body, Button, Container, Head, Heading, Html, Preview, Text } from 'react-email'
+import { Body, Button, Container, Head, Heading, Hr, Html, Link, Preview, Section, Text } from 'react-email'
 
 type VerifyEmailProps = {
   verificationUrl: string
@@ -6,51 +6,103 @@ type VerifyEmailProps = {
 
 export default function VerifyEmail({ verificationUrl }: VerifyEmailProps) {
   return (
-    <Html>
+    <Html lang="en">
       <Head />
 
       <Preview>Verify your FeeRadar email address</Preview>
 
-      <Body style={body}>
-        <Container style={container}>
-          <Heading>Verify your email</Heading>
+      <Body style={styles.body}>
+        <Container style={styles.container}>
+          <Heading style={styles.heading}>Verify your email</Heading>
 
-          <Text>Confirm your email address to finish creating your FeeRadar account.</Text>
+          <Text style={styles.text}>Confirm your email address to finish creating your FeeRadar account.</Text>
 
-          <Button href={verificationUrl} style={button}>
-            Verify email
-          </Button>
+          <Section style={styles.buttonSection}>
+            <Button href={verificationUrl} style={styles.button}>
+              Verify email
+            </Button>
+          </Section>
 
-          <Text style={mutedText}>If you didn&apos;t create a FeeRadar account, you can ignore this email.</Text>
+          <Text style={styles.text}>This verification link will expire after a limited time.</Text>
+
+          <Hr style={styles.divider} />
+
+          <Text style={styles.footer}>If you didn&apos;t create a FeeRadar account, you can safely ignore this email.</Text>
+
+          <Text style={styles.footer}>
+            Need help?{' '}
+            <Link href="mailto:support@notifications.feeradar.com" style={styles.link}>
+              Contact FeeRadar support
+            </Link>
+          </Text>
         </Container>
       </Body>
     </Html>
   )
 }
 
-const body = {
-  backgroundColor: '#111827',
-  color: '#f1f5f9',
-  fontFamily: 'Arial, sans-serif'
-}
+const styles = {
+  body: {
+    backgroundColor: '#111827',
+    color: '#f1f5f9',
+    fontFamily: 'Arial, Helvetica, sans-serif',
+    margin: 0,
+    padding: '40px 16px'
+  },
 
-const container = {
-  margin: '0 auto',
-  padding: '40px 24px',
-  maxWidth: '560px'
-}
+  container: {
+    backgroundColor: '#1a2333',
+    border: '1px solid #334155',
+    borderRadius: '12px',
+    margin: '0 auto',
+    maxWidth: '560px',
+    padding: '40px 32px'
+  },
 
-const button = {
-  backgroundColor: '#22d3ee',
-  color: '#083344',
-  padding: '12px 20px',
-  borderRadius: '8px',
-  textDecoration: 'none',
-  fontWeight: '600'
-}
+  heading: {
+    color: '#f8fafc',
+    fontSize: '28px',
+    lineHeight: '36px',
+    margin: '0 0 16px'
+  },
 
-const mutedText = {
-  color: '#94a3b8',
-  fontSize: '14px',
-  marginTop: '24px'
+  text: {
+    color: '#cbd5e1',
+    fontSize: '16px',
+    lineHeight: '26px',
+    margin: '0 0 24px'
+  },
+
+  buttonSection: {
+    margin: '28px 0',
+    textAlign: 'center' as const
+  },
+
+  button: {
+    backgroundColor: '#22d3ee',
+    borderRadius: '8px',
+    color: '#083344',
+    display: 'inline-block',
+    fontSize: '16px',
+    fontWeight: '600',
+    padding: '14px 24px',
+    textDecoration: 'none'
+  },
+
+  divider: {
+    borderColor: '#334155',
+    margin: '32px 0 24px'
+  },
+
+  footer: {
+    color: '#94a3b8',
+    fontSize: '13px',
+    lineHeight: '20px',
+    margin: '8px 0'
+  },
+
+  link: {
+    color: '#22d3ee',
+    textDecoration: 'underline'
+  }
 }

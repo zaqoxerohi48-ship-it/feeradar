@@ -1,9 +1,9 @@
 import { Resend } from 'resend'
 
-const apiKey = process.env.RESEND_URL
+const RESEND_URL = process.env.RESEND_URL
 
-if (!apiKey) {
+if (!RESEND_URL) {
   throw new Error('RESEND is not defined')
 }
 
-export const resend = new Resend(apiKey)
+export const resend = new Resend(RESEND_URL)

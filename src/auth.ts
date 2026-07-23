@@ -1,13 +1,9 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
-import { z } from 'zod'
+import { EmailNotVerifiedError, InvalidCredentialsError } from '@/lib/auth-errors'
 import { verifyPassword } from '@/lib/password'
 import prisma from '@/lib/prisma'
-
-const signInSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8)
-})
+import { loginFormSchema } from './app/(auth)/login/schema'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
@@ -15,7 +11,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
 
   pages: {
-    signIn: '/sign-in'
+    signIn: '/login'
   },
 
   providers: [
@@ -26,32 +22,30 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
 
       async authorize(credentials) {
-        const parsedCredentials = signInSchema.safeParse(credentials)
+        const parsedCredentials = loginFormSchema.safeParse(credentials)
 
         if (!parsedCredentials.success) {
-          return null
+          throw new InvalidCredentialsError()
         }
 
         const { email, password } = parsedCredentials.data
 
         const user = await prisma.user.findUnique({
-          where: {
-            email
-          }
+          where: { email }
         })
 
         if (!user || !user.passwordHash) {
-          return null
+          throw new InvalidCredentialsError()
         }
 
         const isValidPassword = await verifyPassword(password, user.passwordHash)
 
         if (!isValidPassword) {
-          return null
+          throw new InvalidCredentialsError()
         }
 
         if (!user.emailVerifiedAt) {
-          return null
+          throw new EmailNotVerifiedError()
         }
 
         return {

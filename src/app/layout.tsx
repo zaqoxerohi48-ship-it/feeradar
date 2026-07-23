@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Geist } from 'next/font/google'
+import { Toaster } from 'sonner'
 import { rootMetadata } from '@/lib/metadata'
 import './globals.css'
 import { Providers } from './providers'
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   )
