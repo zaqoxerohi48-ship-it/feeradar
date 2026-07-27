@@ -22,7 +22,7 @@ export const LoginForm = () => {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-              <Input aria-invalid={fieldState.invalid} id={field.name} {...field} type="email" placeholder="email" />
+              <Input aria-invalid={fieldState.invalid} id={field.name} {...field} type="email" placeholder="Enter your email address" />
               {fieldState.error && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
@@ -40,7 +40,7 @@ export const LoginForm = () => {
                   id={field.name}
                   {...field}
                   type={showPassword ? 'text' : 'password'}
-                  placeholder="password"
+                  placeholder="Enter your password"
                 />
                 <button
                   type="button"

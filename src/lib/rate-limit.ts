@@ -17,6 +17,13 @@ const registerRateLimit = new Ratelimit({
   analytics: false
 })
 
+const forgotPasswordRateLimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(5, '1 m'),
+  prefix: 'feeradar:forgot-password',
+  analytics: false
+})
+
 async function getClientIp(): Promise<string | null> {
   const headersList = await headers()
 
@@ -42,4 +49,8 @@ export async function limitLoginByIp() {
 
 export async function limitRegisterByIp() {
   return limitByIp(registerRateLimit)
+}
+
+export async function limitForgotPasswordByIp() {
+  return limitByIp(forgotPasswordRateLimit)
 }

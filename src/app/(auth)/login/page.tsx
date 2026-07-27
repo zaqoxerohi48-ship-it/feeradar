@@ -13,12 +13,20 @@ export default function LoginPage() {
 
         <LoginForm />
 
-        <p className="text-muted-foreground mt-6 text-center text-sm">
-          Don&apos;t have an account?{' '}
-          <Link href="/register" className="text-primary font-medium hover:underline">
-            Create an account
-          </Link>
-        </p>
+        <div>
+          <p className="text-muted-foreground mt-6 text-center text-sm">
+            Don&apos;t have an account?{' '}
+            <Link href="/register" className="text-primary font-medium hover:underline">
+              Create an account
+            </Link>
+          </p>
+          <p className="text-muted-foreground text-center text-sm">
+            Forgot your password?{' '}
+            <Link href="/forgot-password" className="text-primary font-medium hover:underline">
+              Forgot password
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   )

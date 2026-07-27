@@ -23,7 +23,7 @@ export const RegisterForm = () => {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input {...field} type="email" id="email" aria-invalid={fieldState.invalid} placeholder="email" />
+              <Input {...field} type="email" id="email" aria-invalid={fieldState.invalid} placeholder="Enter your email address" />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
