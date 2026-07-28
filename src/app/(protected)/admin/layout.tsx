@@ -1,16 +1,11 @@
-import { redirect } from 'next/navigation'
-import { auth } from '@/auth'
+import { requireAdmin } from '@/lib/requireAuth'
 
 export default async function AdminLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const session = await auth()
-
-  if (session?.user.role !== 'admin') {
-    redirect('/')
-  }
+  await requireAdmin()
 
   return (
     <div className="flex min-h-screen flex-col">

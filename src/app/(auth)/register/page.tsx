@@ -1,7 +1,10 @@
 import Link from 'next/link'
+import { requireGuest } from '@/lib/requireAuth'
 import { RegisterForm } from './RegisterForm'
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  await requireGuest()
+
   return (
     <div className="container flex justify-center px-4 py-10 md:pt-30">
       <div className="w-full max-w-xl">

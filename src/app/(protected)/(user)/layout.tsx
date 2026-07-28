@@ -1,5 +1,4 @@
-import { redirect } from 'next/navigation'
-import { auth } from '@/auth'
+import { requireUser } from '@/lib/requireAuth'
 import { ProtectedUserFooter } from '@/widgets/protected-user-footer/ProtectedUserFooter'
 import { ProtectedUserHeader } from '@/widgets/protected-user-header/ProtectedUserHeader'
 
@@ -8,11 +7,7 @@ export default async function UserLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const session = await auth()
-
-  if (!session?.user) {
-    redirect('/')
-  }
+  await requireUser()
 
   return (
     <div className="flex min-h-screen flex-col">

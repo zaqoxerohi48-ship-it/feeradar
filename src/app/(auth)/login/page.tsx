@@ -1,7 +1,10 @@
 import Link from 'next/link'
+import { requireGuest } from '@/lib/requireAuth'
 import { LoginForm } from './LoginForm'
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  await requireGuest()
+
   return (
     <div className="container flex justify-center px-4 py-10 md:pt-30">
       <div className="w-full max-w-xl">
