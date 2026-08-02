@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import prisma from '@/lib/prisma'
-import { requireGuest } from '@/lib/requireAuth'
+import { requireGuest } from '@/lib/requireAuthRoles'
 import { hashVerificationToken } from '@/lib/verification-token'
 import { ResetPasswordForm } from './ResetPasswordForm'
 

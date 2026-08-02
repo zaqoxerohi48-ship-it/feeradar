@@ -7,9 +7,16 @@ datasource db {
   provider = "postgresql"
 }
 
+// USER
+
 enum UserRole {
   USER
   ADMIN
+}
+
+enum UserPlan {
+  FREE
+  PRO
 }
 
 model User {
@@ -17,6 +24,7 @@ model User {
   email        String   @unique
   passwordHash String?  @map("password_hash")
   role         UserRole @default(USER)
+  plan         UserPlan @default(FREE)
 
   emailVerifiedAt DateTime? @map("email_verified_at")
 
@@ -58,3 +66,48 @@ model PasswordResetToken {
   @@index([userId])
   @@map("password_reset_tokens")
 }
+
+// CARDS
+
+enum KycRequirement {
+  REQUIRED
+  NOT_REQUIRED
+  UNKNOWN
+}
+
+model Country {
+  code String @id @db.Char(2)
+  name String
+
+  companies CardCompany[]
+
+  @@map("countries")
+}
+
+model CardCompany {
+  id   Int @id @default(autoincrement())
+  name String @unique
+  slug String @unique
+
+  description String?
+
+  websiteUrl  String  @map("website_url")
+  referralUrl String? @map("referral_url")
+  logoUrl     String  @map("logo_url")
+
+  kycRequirement KycRequirement @default(UNKNOWN) @map("kyc_requirement")
+
+  virtualCard  Boolean @default(true) @map("virtual_card")
+  physicalCard Boolean @default(false) @map("physical_card")
+
+  isActive Boolean @default(true) @map("is_active")
+
+  countries Country[]
+
+  lastVerifiedAt DateTime? @map("last_verified_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  @@map("card_companies")
+}
+

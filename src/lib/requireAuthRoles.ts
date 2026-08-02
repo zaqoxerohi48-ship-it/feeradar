@@ -1,12 +1,13 @@
 import { redirect } from 'next/navigation'
+import 'server-only'
 import { auth } from '@/auth'
 import prisma from './prisma'
 
-export async function requireAuth() {
+export async function getCurrentUser() {
   const session = await auth()
 
-  if (!session?.user.id) {
-    redirect('/login')
+  if (!session?.user?.id) {
+    return null
   }
 
   const user = await prisma.user.findUnique({
@@ -15,9 +16,18 @@ export async function requireAuth() {
     },
     select: {
       id: true,
-      role: true
+      role: true,
+      plan: true
     }
   })
+
+  return user
+}
+
+export type PublicUser = Awaited<ReturnType<typeof getCurrentUser>>
+
+export async function requireAuth() {
+  const user = await getCurrentUser()
 
   if (!user) {
     redirect('/login')
@@ -42,15 +52,19 @@ export async function requireAdmin() {
   if (user.role !== 'ADMIN') {
     redirect('/')
   }
+
+  return user
 }
 
 export async function requireGuest() {
-  const user = await requireAuth()
+  const user = await getCurrentUser()
 
-  if (!user) return
+  if (!user) {
+    return
+  }
 
-  if (user.role !== 'ADMIN') {
-    redirect('/')
+  if (user.role === 'ADMIN') {
+    redirect('/admin')
   }
 
   redirect('/dashboard')

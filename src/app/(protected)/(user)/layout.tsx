@@ -1,6 +1,6 @@
-import { requireUser } from '@/lib/requireAuth'
-import { ProtectedUserFooter } from '@/widgets/protected-user-footer/ProtectedUserFooter'
-import { ProtectedUserHeader } from '@/widgets/protected-user-header/ProtectedUserHeader'
+import { requireUser } from '@/lib/requireAuthRoles'
+import { PublicFooter } from '@/widgets/public-footer/PublicFooter'
+import { PublicHeader } from '@/widgets/public-header/PublicHeader'
 
 export default async function UserLayout({
   children
@@ -11,9 +11,9 @@ export default async function UserLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <ProtectedUserHeader />
+      <PublicHeader />
       <main className="flex-1">{children}</main>
-      <ProtectedUserFooter />
+      <PublicFooter />
     </div>
   )
 }

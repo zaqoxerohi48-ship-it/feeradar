@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { requireGuest } from '@/lib/requireAuth'
+import { requireGuest } from '@/lib/requireAuthRoles'
 import { LoginForm } from './LoginForm'
 
 export default async function LoginPage() {
