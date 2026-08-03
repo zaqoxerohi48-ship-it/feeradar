@@ -85,7 +85,7 @@ model Country {
 }
 
 model CardCompany {
-  id   Int @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
   name String @unique
   slug String @unique
 
@@ -99,6 +99,12 @@ model CardCompany {
 
   virtualCard  Boolean @default(true) @map("virtual_card")
   physicalCard Boolean @default(false) @map("physical_card")
+
+  applePay  Boolean @default(false) @map("apple_pay")
+  googlePay Boolean @default(false) @map("google_pay")
+
+  visaCard   Boolean @default(false) @map("visa_card")
+  masterCard Boolean @default(false) @map("master_card")
 
   isActive Boolean @default(true) @map("is_active")
 
