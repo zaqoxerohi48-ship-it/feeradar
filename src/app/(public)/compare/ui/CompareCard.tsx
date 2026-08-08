@@ -1,27 +1,29 @@
 import { ArrowRight, BadgeCheck, CreditCard, Globe2, ShieldCheck, Smartphone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Prisma } from '@/generated/prisma/client'
 
-type CardCompanyWithCountriesCount = Prisma.CardCompanyGetPayload<{
-  include: {
-    _count: {
-      select: {
-        countries: true
-      }
-    }
+type CompareCardItem = {
+  id: number
+  name: string
+  slug: string
+  logoUrl: string
+  kycRequirement: 'REQUIRED' | 'NOT_REQUIRED' | 'UNKNOWN'
+  virtualCard: boolean
+  physicalCard: boolean
+  applePay: boolean
+  googlePay: boolean
+  visaCard: boolean
+  masterCard: boolean
+  _count: {
+    countries: number
   }
-}>
+}
 
 type CompareCardProps = {
-  card: CardCompanyWithCountriesCount
+  card: CompareCardItem
 }
 
 export const CompareCard = ({ card }: CompareCardProps) => {
-  const cardFormats = [card.virtualCard && 'Virtual', card.physicalCard && 'Physical'].filter(Boolean) as string[]
-  const cardNetworks = [card.visaCard && 'Visa', card.masterCard && 'Mastercard'].filter(Boolean) as string[]
-  const paymentMethods = [card.applePay && 'Apple Pay', card.googlePay && 'Google Pay'].filter(Boolean) as string[]
-
   return (
     <Link
       href={`/compare/${card.slug}`}
@@ -30,7 +32,7 @@ export const CompareCard = ({ card }: CompareCardProps) => {
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 p-2.5">
-            <Image src={card.logoUrl} alt={`${card.name} logo`} width={44} height={44} className="h-full w-full object-contain" />
+            <Image src={card.logoUrl} alt={`${card.name} logo`} width={44} height={44} className="h-full w-full rounded-xl object-contain" />
           </div>
 
           <div className="flex flex-col gap-1">
@@ -48,7 +50,12 @@ export const CompareCard = ({ card }: CompareCardProps) => {
             <CreditCard className="size-4" />
           </span>
           <span className="w-20 shrink-0 text-xs font-medium text-white/40 uppercase">Formats</span>
-          <span className="line-clamp-1 text-white/75">{cardFormats.length > 0 ? cardFormats.join(', ') : 'Not specified'}</span>
+          <span className="line-clamp-1 text-white/75">
+            {card.virtualCard ? 'Virtual' : null}
+            {card.virtualCard && card.physicalCard ? ', ' : null}
+            {card.physicalCard ? 'Physical' : null}
+            {!card.virtualCard && !card.physicalCard ? 'Not specified' : null}
+          </span>
         </div>
 
         <div className="flex items-center gap-3">
@@ -56,7 +63,12 @@ export const CompareCard = ({ card }: CompareCardProps) => {
             <BadgeCheck className="size-4" />
           </span>
           <span className="w-20 shrink-0 text-xs font-medium text-white/40 uppercase">Networks</span>
-          <span className="line-clamp-1 text-white/75">{cardNetworks.length > 0 ? cardNetworks.join(', ') : 'Not specified'}</span>
+          <span className="line-clamp-1 text-white/75">
+            {card.visaCard ? 'Visa' : null}
+            {card.visaCard && card.masterCard ? ', ' : null}
+            {card.masterCard ? 'Mastercard' : null}
+            {!card.visaCard && !card.masterCard ? 'Not specified' : null}
+          </span>
         </div>
 
         <div className="flex items-center gap-3">
@@ -64,7 +76,12 @@ export const CompareCard = ({ card }: CompareCardProps) => {
             <Smartphone className="size-4" />
           </span>
           <span className="w-20 shrink-0 text-xs font-medium text-white/40 uppercase">Payments</span>
-          <span className="line-clamp-1 text-white/75">{paymentMethods.length > 0 ? paymentMethods.join(', ') : 'Not supported'}</span>
+          <span className="line-clamp-1 text-white/75">
+            {card.applePay ? 'Apple Pay' : null}
+            {card.applePay && card.googlePay ? ', ' : null}
+            {card.googlePay ? 'Google Pay' : null}
+            {!card.applePay && !card.googlePay ? 'Not supported' : null}
+          </span>
         </div>
 
         <div className="flex items-center gap-3">

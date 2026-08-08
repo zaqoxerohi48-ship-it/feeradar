@@ -37,7 +37,7 @@ export async function HeroSection() {
               </Link>
 
               <Link
-                href="#how-it-works"
+                href="/how-it-works"
                 className="bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-11 items-center justify-center rounded-md border px-6 text-sm font-medium transition-colors"
               >
                 How it works
@@ -48,10 +48,14 @@ export async function HeroSection() {
               <p className="text-muted-foreground text-sm">Available comparisons</p>
 
               <div className="flex flex-wrap gap-2">
-                {cards.map((card, i) => (
-                  <span key={i} className="bg-background rounded-full border px-3 py-1.5 text-sm font-medium shadow-sm">
+                {cards.map((card) => (
+                  <Link
+                    key={card.slug}
+                    href={`/compare/${card.slug}`}
+                    className="bg-background rounded-full border px-3 py-1.5 text-sm font-medium shadow-sm transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  >
                     {card.name}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -67,6 +71,7 @@ export async function HeroSection() {
                 width={800}
                 height={700}
                 priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="h-auto w-full rounded-2xl object-cover"
               />
             </div>

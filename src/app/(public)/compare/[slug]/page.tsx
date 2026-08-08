@@ -50,12 +50,6 @@ export default async function CompareSlugPage({ params }: Props) {
     notFound()
   }
 
-  const paymentMethods = [card.applePay && 'Apple Pay', card.googlePay && 'Google Pay'].filter(Boolean) as string[]
-
-  const cardNetworks = [card.visaCard && 'Visa', card.masterCard && 'Mastercard'].filter(Boolean) as string[]
-
-  const cardFormats = [card.virtualCard && 'Virtual card', card.physicalCard && 'Physical card'].filter(Boolean) as string[]
-
   return (
     <div className="container py-10">
       <section className="rounded-3xl border border-white/10 bg-linear-to-br from-[#1e1b3c] to-[#121020]">
@@ -63,7 +57,7 @@ export default async function CompareSlugPage({ params }: Props) {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
               <div className="flex size-20 shrink-0 items-center justify-center rounded-2xl border border-white/10 p-3">
-                <Image src={card.logoUrl} alt={`${card.name} logo`} width={64} height={64} className="h-full w-full object-contain" />
+                <Image src={card.logoUrl} alt={`${card.name} logo`} width={64} height={64} className="h-full w-full rounded-xl object-contain" />
               </div>
 
               <div className="flex flex-col gap-3">
@@ -102,23 +96,29 @@ export default async function CompareSlugPage({ params }: Props) {
               <h2 className="text-lg font-semibold">Card information</h2>
 
               <div className="flex flex-col gap-5">
-                <InfoItem icon={<CreditCard className="size-5" />} label="Card formats" values={cardFormats} />
+                <InfoItem icon={<CreditCard className="size-5" />} label="Card formats" isEmpty={!card.virtualCard && !card.physicalCard}>
+                  {card.virtualCard ? <span>Virtual card</span> : null}
+                  {card.virtualCard && card.physicalCard ? <span className="text-white/20">•</span> : null}
+                  {card.physicalCard ? <span>Physical card</span> : null}
+                </InfoItem>
 
-                <InfoItem icon={<CircleDollarSign className="size-5" />} label="Card networks" values={cardNetworks} />
+                <InfoItem icon={<CircleDollarSign className="size-5" />} label="Card networks" isEmpty={!card.visaCard && !card.masterCard}>
+                  {card.visaCard ? <span>Visa</span> : null}
+                  {card.visaCard && card.masterCard ? <span className="text-white/20">•</span> : null}
+                  {card.masterCard ? <span>Mastercard</span> : null}
+                </InfoItem>
 
-                <InfoItem icon={<Smartphone className="size-5" />} label="Mobile payments" values={paymentMethods} />
+                <InfoItem icon={<Smartphone className="size-5" />} label="Mobile payments" isEmpty={!card.applePay && !card.googlePay}>
+                  {card.applePay ? <span>Apple Pay</span> : null}
+                  {card.applePay && card.googlePay ? <span className="text-white/20">•</span> : null}
+                  {card.googlePay ? <span>Google Pay</span> : null}
+                </InfoItem>
 
-                <InfoItem
-                  icon={<ShieldCheck className="size-5" />}
-                  label="Verification"
-                  values={[
-                    card.kycRequirement === 'REQUIRED'
-                      ? 'KYC required'
-                      : card.kycRequirement === 'NOT_REQUIRED'
-                        ? 'KYC not required'
-                        : 'KYC requirements unknown'
-                  ]}
-                />
+                <InfoItem icon={<ShieldCheck className="size-5" />} label="Verification">
+                  {card.kycRequirement === 'REQUIRED' ? <span>KYC required</span> : null}
+                  {card.kycRequirement === 'NOT_REQUIRED' ? <span>KYC not required</span> : null}
+                  {card.kycRequirement === 'UNKNOWN' ? <span>KYC requirements unknown</span> : null}
+                </InfoItem>
               </div>
             </div>
 

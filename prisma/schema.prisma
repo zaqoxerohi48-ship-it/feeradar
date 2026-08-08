@@ -116,4 +116,3 @@ model CardCompany {
 
   @@map("card_companies")
 }
-
