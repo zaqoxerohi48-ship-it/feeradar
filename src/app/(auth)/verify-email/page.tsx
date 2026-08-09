@@ -17,8 +17,8 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
         <div className="w-full max-w-md">
           <div className="flex flex-col items-center justify-center gap-4 text-center">
             <h2 className="text-2xl font-semibold">Invalid verification link</h2>
-            <p className="">The verification token is missing.</p>
-            <Link href="/" className="w-fit rounded-md bg-green-400 px-6 py-2.5 font-medium text-black transition-colors hover:bg-green-500">
+            <p className="text-muted-foreground">The verification token is missing.</p>
+            <Link href="/" className="inline-flex h-10 w-fit items-center rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90">
               Return home
             </Link>
           </div>
@@ -41,8 +41,8 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
         <div className="w-full max-w-md">
           <div className="flex flex-col items-center justify-center gap-4 text-center">
             <h2 className="text-2xl font-semibold">Invalid verification link</h2>
-            <p className="">The verification token is invalid.</p>
-            <Link href="/" className="w-fit rounded-md bg-green-400 px-6 py-2.5 font-medium text-black transition-colors hover:bg-green-500">
+            <p className="text-muted-foreground">The verification token is invalid.</p>
+            <Link href="/" className="inline-flex h-10 w-fit items-center rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90">
               Return home
             </Link>
           </div>
@@ -57,8 +57,8 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
         <div className="w-full max-w-md">
           <div className="flex flex-col items-center justify-center gap-4 text-center">
             <h2 className="text-2xl font-semibold">Verification link already used</h2>
-            <p className="">The verification token has already been used.</p>
-            <Link href="/login" className="w-fit rounded-md bg-green-400 px-6 py-2.5 font-medium text-black transition-colors hover:bg-green-500">
+            <p className="text-muted-foreground">The verification token has already been used.</p>
+            <Link href="/login" className="inline-flex h-10 w-fit items-center rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90">
               Sign in
             </Link>
           </div>
@@ -73,8 +73,8 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
         <div className="w-full max-w-md">
           <div className="flex flex-col items-center justify-center gap-4 text-center">
             <h2 className="text-2xl font-semibold">Verification link expired</h2>
-            <p className="">The verification token has expired.</p>
-            <Link href="/" className="w-fit rounded-md bg-green-400 px-6 py-2.5 font-medium text-black transition-colors hover:bg-green-500">
+            <p className="text-muted-foreground">The verification token has expired.</p>
+            <Link href="/" className="inline-flex h-10 w-fit items-center rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90">
               Return home
             </Link>
           </div>
@@ -110,8 +110,8 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
       <div className="w-full max-w-md">
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <h2 className="text-2xl font-semibold">Email verified</h2>
-          <p className="">Your email address has been successfully verified.</p>
-          <Link href="/login" className="w-fit rounded-md bg-green-400 px-6 py-2.5 font-medium text-black transition-colors hover:bg-green-500">
+          <p className="text-muted-foreground">Your email address has been successfully verified.</p>
+          <Link href="/login" className="inline-flex h-10 w-fit items-center rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90">
             Go to login
           </Link>
         </div>

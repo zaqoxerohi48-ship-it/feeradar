@@ -8,8 +8,8 @@ type NetworkMetricProps = {
 
 export const NetworkMetric = ({ icon: Icon, label, value }: NetworkMetricProps) => {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/3 p-3">
-      <div className="flex items-center gap-2 text-xs text-zinc-500">
+    <div className="rounded-xl border bg-background/60 p-3">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground">
         <Icon className="size-3.5" />
         {label}
       </div>

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { buildMetadata } from '@/lib/metadata'
 import prisma from '@/lib/prisma'
+import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
 import { CompareCard } from './ui/CompareCard'
+import { CompareCardSkeleton } from './ui/CompareCardSkeleton'
 import { SearchInput } from './ui/SearchInput'
 
 export const metadata: Metadata = buildMetadata({
@@ -10,12 +13,17 @@ export const metadata: Metadata = buildMetadata({
   path: '/compare'
 })
 
-export const revalidate = 3600
+type Props = {
+  searchParams: Promise<{ search?: string }>
+}
 
-export default async function ComparePage() {
+export default async function ComparePage({ searchParams }: Props) {
+  const { search } = await searchParams
+
   const cards = await prisma.cardCompany.findMany({
     where: {
-      isActive: true
+      isActive: true,
+      ...(search && { name: { contains: search, mode: 'insensitive' } })
     },
     orderBy: { name: 'asc' },
     include: {
@@ -25,34 +33,39 @@ export default async function ComparePage() {
 
   return (
     <div className="container flex flex-col gap-8 py-10">
+      <BreadCrumbs items={[{ label: 'Home', href: '/' }, { label: 'Compare' }]} />
+
       <section className="flex flex-col gap-3">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">Crypto cards</span>
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/60">
-            {cards.length} active cards
-          </span>
+          <span className="border-primary/15 bg-secondary text-primary rounded-full border px-3 py-1 text-xs font-medium">Crypto cards</span>
         </div>
 
-        <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">Compare crypto cards</h1>
+        <h1 className="text-foreground text-3xl font-semibold tracking-tight sm:text-4xl">Compare crypto cards</h1>
 
-        <p className="max-w-2xl text-sm leading-6 text-white/60 sm:text-base">
+        <p className="text-muted-foreground max-w-2xl text-sm leading-6 sm:text-base">
           Browse active crypto card providers and open a detailed comparison page for supported countries, payment options and card availability.
         </p>
 
         <SearchInput />
       </section>
 
-      {cards.length > 0 ? (
-        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {cards.map((card) => (
-            <CompareCard key={card.id} card={card} />
-          ))}
-        </section>
-      ) : (
-        <section className="rounded-2xl border border-white/10 bg-white/4 p-6">
-          <p className="text-sm text-white/60">No active crypto cards are available yet.</p>
-        </section>
-      )}
+      <Suspense fallback={<CompareCardSkeleton />}>
+        <div className="flex flex-col gap-4">
+          <span className="bg-card text-muted-foreground w-fit rounded-full border px-3 py-1 text-xs font-medium">{cards.length} active cards</span>
+
+          {cards.length > 0 ? (
+            <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {cards.map((card) => (
+                <CompareCard key={card.id} card={card} />
+              ))}
+            </section>
+          ) : (
+            <section className="bg-card rounded-2xl border p-6 shadow-sm">
+              <p className="text-muted-foreground text-sm">No active crypto cards are available yet.</p>
+            </section>
+          )}
+        </div>
+      </Suspense>
     </div>
   )
 }

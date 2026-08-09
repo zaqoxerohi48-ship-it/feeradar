@@ -44,7 +44,7 @@ export function MobileMenu({ isAuthenticated }: Props) {
                 <span
                   className={cn(
                     'block rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-muted hover:text-foreground',
-                    isActive && 'bg-green-400/10 text-green-400'
+                    isActive && 'bg-secondary text-secondary-foreground'
                   )}
                 >
                   {link.name}
@@ -61,7 +61,7 @@ export function MobileMenu({ isAuthenticated }: Props) {
                 'flex h-10 items-center justify-center rounded-lg px-4 font-semibold transition-colors',
                 isAuthenticated
                   ? 'border border-border hover:bg-muted'
-                  : 'bg-green-400 text-black hover:bg-green-500'
+                  : 'bg-primary text-primary-foreground hover:bg-primary/90'
               )}
             >
               {authLink.name}

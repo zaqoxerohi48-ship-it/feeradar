@@ -13,7 +13,7 @@ export const NavLink = ({ href, text }: Props) => {
   const isActive = href === '/' ? pathname === href : pathname.startsWith(href)
 
   return (
-    <Link href={href} className={isActive ? 'text-green-400' : ''}>
+    <Link href={href} className={isActive ? 'text-sm font-medium text-primary' : 'text-sm font-medium text-muted-foreground transition-colors hover:text-foreground'}>
       {text}
     </Link>
   )

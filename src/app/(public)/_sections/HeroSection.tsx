@@ -14,15 +14,17 @@ export async function HeroSection() {
   })
 
   return (
-    <section className="overflow-hidden py-16 md:py-24 lg:py-32">
+    <section className="overflow-hidden py-16 md:py-20 lg:py-24">
       <div className="container">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-12 xl:grid-cols-2 xl:gap-16">
           <div className="flex flex-col items-start gap-6">
-            <div className="bg-muted/50 text-muted-foreground inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium">
+            <div className="bg-card text-muted-foreground inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium shadow-xs">
               Compare crypto card fees in one place
             </div>
 
-            <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">Find the best crypto card for your money</h1>
+            <h1 className="text-foreground max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              Find the best crypto card for your money
+            </h1>
 
             <p className="text-muted-foreground max-w-xl text-lg leading-8">
               Compare fees, limits and conditions of popular crypto cards. Choose the best option before spending your crypto.
@@ -31,14 +33,14 @@ export async function HeroSection() {
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <Link
                 href="/compare"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-11 items-center justify-center rounded-md px-6 text-sm font-medium transition-colors"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring inline-flex h-10 items-center justify-center rounded-lg px-5 text-sm font-medium shadow-xs transition-colors focus-visible:ring-3 focus-visible:outline-none"
               >
                 Compare cards
               </Link>
 
               <Link
                 href="/how-it-works"
-                className="bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-11 items-center justify-center rounded-md border px-6 text-sm font-medium transition-colors"
+                className="bg-card text-foreground hover:bg-muted focus-visible:ring-ring inline-flex h-10 items-center justify-center rounded-lg border px-5 text-sm font-medium shadow-xs transition-colors focus-visible:ring-3 focus-visible:outline-none"
               >
                 How it works
               </Link>
@@ -52,7 +54,7 @@ export async function HeroSection() {
                   <Link
                     key={card.slug}
                     href={`/compare/${card.slug}`}
-                    className="bg-background rounded-full border px-3 py-1.5 text-sm font-medium shadow-sm transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                    className="bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground focus-visible:ring-ring rounded-full border px-3 py-1.5 text-sm font-medium shadow-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
                   >
                     {card.name}
                   </Link>
@@ -61,10 +63,8 @@ export async function HeroSection() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-xl">
-            <div className="bg-primary/10 absolute -inset-6 -z-10 rounded-full blur-3xl" />
-
-            <div className="bg-muted/30 relative overflow-hidden rounded-3xl border p-4 shadow-2xl sm:p-6">
+          <div className="relative mx-auto w-full">
+            <div className="bg-card relative overflow-hidden rounded-2xl border p-3 shadow-sm sm:p-4">
               <Image
                 src="/images/hero-section-crypto.webp"
                 alt="Crypto cards comparison dashboard"
@@ -72,7 +72,7 @@ export async function HeroSection() {
                 height={700}
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="h-auto w-full rounded-2xl object-cover"
+                className="h-auto w-full rounded-xl object-cover"
               />
             </div>
           </div>

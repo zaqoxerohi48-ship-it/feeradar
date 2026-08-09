@@ -43,16 +43,16 @@ export default function VerifyEmail({ verificationUrl }: VerifyEmailProps) {
 
 const styles = {
   body: {
-    backgroundColor: '#111827',
-    color: '#f1f5f9',
+    backgroundColor: '#f7f8fb',
+    color: '#0f172a',
     fontFamily: 'Arial, Helvetica, sans-serif',
     margin: 0,
     padding: '40px 16px'
   },
 
   container: {
-    backgroundColor: '#1a2333',
-    border: '1px solid #334155',
+    backgroundColor: '#ffffff',
+    border: '1px solid #e2e8f0',
     borderRadius: '12px',
     margin: '0 auto',
     maxWidth: '560px',
@@ -60,14 +60,15 @@ const styles = {
   },
 
   heading: {
-    color: '#f8fafc',
+    color: '#0f172a',
     fontSize: '28px',
+    fontWeight: '600',
     lineHeight: '36px',
     margin: '0 0 16px'
   },
 
   text: {
-    color: '#cbd5e1',
+    color: '#475569',
     fontSize: '16px',
     lineHeight: '26px',
     margin: '0 0 24px'
@@ -79,30 +80,30 @@ const styles = {
   },
 
   button: {
-    backgroundColor: '#22d3ee',
+    backgroundColor: '#4f46e5',
     borderRadius: '8px',
-    color: '#083344',
+    color: '#ffffff',
     display: 'inline-block',
     fontSize: '16px',
-    fontWeight: '600',
+    fontWeight: '500',
     padding: '14px 24px',
     textDecoration: 'none'
   },
 
   divider: {
-    borderColor: '#334155',
+    borderColor: '#e2e8f0',
     margin: '32px 0 24px'
   },
 
   footer: {
-    color: '#94a3b8',
+    color: '#64748b',
     fontSize: '13px',
     lineHeight: '20px',
     margin: '8px 0'
   },
 
   link: {
-    color: '#22d3ee',
+    color: '#4f46e5',
     textDecoration: 'underline'
   }
 }

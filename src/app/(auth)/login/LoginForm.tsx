@@ -56,11 +56,7 @@ export const LoginForm = () => {
           )}
         />
 
-        <Button
-          className="cursor-pointer rounded-2xl bg-green-400 py-2 font-semibold text-black transition-colors hover:bg-green-500 disabled:cursor-not-allowed disabled:opacity-70"
-          type="submit"
-          disabled={isSubmitting}
-        >
+        <Button className="w-full cursor-pointer" type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Signing in...' : 'Sign in'}
         </Button>
       </FieldGroup>

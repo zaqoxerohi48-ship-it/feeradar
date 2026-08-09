@@ -24,9 +24,11 @@ model User {
   email        String   @unique
   passwordHash String?  @map("password_hash")
   role         UserRole @default(USER)
-  plan         UserPlan @default(FREE)
 
   emailVerifiedAt DateTime? @map("email_verified_at")
+
+  planId Int @map("plan_id")
+  plan Plan @relation(fields: [planId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -115,4 +117,22 @@ model CardCompany {
   updatedAt      DateTime  @updatedAt @map("updated_at")
 
   @@map("card_companies")
+}
+
+// PLANS
+
+model Plan {
+  id          Int      @id @default(autoincrement())
+  code        UserPlan @unique
+  name        String
+  description String
+  priceCents  Int      @map("price_cents")
+
+  features String[]
+
+  mostPopular Boolean @default(false) @map("most_popular")
+
+  users User[]
+
+  @@map("plans")
 }

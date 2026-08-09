@@ -105,6 +105,12 @@ export const registerUser = async (data: unknown) => {
     data: {
       email,
       passwordHash,
+
+      plan: {
+        connect: {
+          code: 'FREE'
+        }
+      },
       verificationTokens: {
         create: {
           tokenHash,

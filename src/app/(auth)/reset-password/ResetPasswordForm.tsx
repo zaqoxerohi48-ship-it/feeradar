@@ -88,11 +88,7 @@ export const ResetPasswordForm = ({ token }: ResetPasswordFormProps) => {
         />
       </FieldGroup>
 
-      <Button
-        type="submit"
-        className="w-full cursor-pointer rounded-2xl bg-green-400 py-2 font-semibold text-black transition-colors hover:bg-green-500 disabled:cursor-not-allowed disabled:opacity-70"
-        disabled={isSubmiting}
-      >
+      <Button type="submit" className="w-full cursor-pointer" disabled={isSubmiting}>
         {isSubmiting ? 'Updating password...' : 'Update Password'}
       </Button>
     </form>
