@@ -14,7 +14,7 @@ export async function HeroSection() {
   })
 
   return (
-    <section className="overflow-hidden py-16 md:py-20 lg:py-24">
+    <section className="overflow-hidden pt-10">
       <div className="container">
         <div className="grid items-center gap-12 xl:grid-cols-2 xl:gap-16">
           <div className="flex flex-col items-start gap-6">

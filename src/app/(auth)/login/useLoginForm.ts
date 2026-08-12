@@ -22,7 +22,6 @@ export const useLoginForm = () => {
     if (result.success) {
       toast.success(result.message)
       router.replace('/dashboard')
-      router.refresh()
       return
     }
 

@@ -27,8 +27,10 @@ model User {
 
   emailVerifiedAt DateTime? @map("email_verified_at")
 
-  planId Int @map("plan_id")
-  plan Plan @relation(fields: [planId], references: [id])
+  planId Int  @map("plan_id")
+  plan   Plan @relation(fields: [planId], references: [id])
+
+  orders Order[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -132,7 +134,60 @@ model Plan {
 
   mostPopular Boolean @default(false) @map("most_popular")
 
-  users User[]
+  users  User[]
+  orders Order[]
 
   @@map("plans")
+}
+
+// ORDERS
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  status      OrderStatus @default(PENDING)
+  amountCents Int         @map("amount_cents")
+  currency    String      @default("usd")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  planId Int  @map("plan_id")
+  plan   Plan @relation(fields: [planId], references: [id])
+
+  stripeCheckoutSessionId String? @unique @map("stripe_checkout_session_id")
+  stripePaymentIntentId   String? @unique @map("stripe_payment_intent_id")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  paidAt    DateTime? @map("paid_at")
+
+  @@index([userId])
+  @@index([planId])
+  @@map("orders")
+}
+
+model PrivacyPolicy {
+  id      Int    @id @default(autoincrement())
+  content String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("privacy_policy")
+}
+
+model TermsPolicy {
+  id      Int    @id @default(autoincrement())
+  content String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("terms_policy")
 }

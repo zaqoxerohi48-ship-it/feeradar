@@ -2,26 +2,24 @@ import 'dotenv/config'
 import prisma from '@/lib/prisma'
 
 async function plans() {
-  const freePlan = await prisma.plan.upsert({
+  await prisma.plan.upsert({
     where: {
-      code: 'FREE'
+      code: 'PRO'
     },
     update: {},
     create: {
-      code: 'FREE',
-      name: 'Free',
-      description: 'For casually checking your options.',
-      priceCents: 0,
-      features: ['Access to all card comparisons', 'Current fees, limits and KYC info', 'Search and filters'],
+      code: 'PRO',
+      name: 'Pro',
+      description: 'For staying ahead of fee changes.',
+      priceCents: 500,
+      features: [
+        'Everything in Free',
+        'Alerts when a tracked card’s fees, cashback or limits change',
+        'Notified when a new card is added',
+        'Save cards to a watchlist',
+        'Export comparisons to CSV'
+      ],
       mostPopular: false
-    }
-  })
-  await prisma.user.updateMany({
-    where: {
-      planId: null
-    },
-    data: {
-      planId: freePlan.id
     }
   })
 }

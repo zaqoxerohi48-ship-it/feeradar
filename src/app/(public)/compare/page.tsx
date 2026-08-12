@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import z from 'zod'
 import { Suspense } from 'react'
 import { buildMetadata } from '@/lib/metadata'
 import prisma from '@/lib/prisma'
@@ -17,8 +18,18 @@ type Props = {
   searchParams: Promise<{ search?: string }>
 }
 
+const searchSchema = z.object({
+  search: z.string().max(32).optional()
+})
+
 export default async function ComparePage({ searchParams }: Props) {
   const { search } = await searchParams
+
+  const searchValidation = searchSchema.safeParse({ search })
+
+  if (!searchValidation.success) {
+    return null
+  }
 
   const cards = await prisma.cardCompany.findMany({
     where: {

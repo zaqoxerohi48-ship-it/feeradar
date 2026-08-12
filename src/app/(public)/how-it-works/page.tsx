@@ -4,7 +4,7 @@ import { comparedFeatures, howItWorksSteps } from './mocks/mocks'
 export default function HowItWorksPage() {
   return (
     <>
-      <section className="container pt-16 pb-14 text-center sm:pt-24">
+      <section className="container py-10 text-center">
         <p className="text-primary text-sm font-medium tracking-wide uppercase">How it works</p>
         <h1 className="text-foreground mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Find your crypto card in three steps</h1>
         <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-lg leading-8">

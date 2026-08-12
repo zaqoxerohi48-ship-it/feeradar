@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { buildMetadata } from '@/lib/metadata'
 import { GasFeesSection } from './_sections/GasFeesSection'
 import { HeroSection } from './_sections/HeroSection'
+import { HowItWorksTeaser } from './_sections/HowItWorksTeaser'
+import { WhyCompareSection } from './_sections/WhyCompareSection'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Crypto Fee Tracker & Card Fee Comparison',
@@ -11,9 +13,11 @@ export const metadata: Metadata = buildMetadata({
 
 export default function HomePage() {
   return (
-    <>
+    <div className="flex flex-col gap-10 md:gap-20">
       <HeroSection />
       <GasFeesSection />
-    </>
+      <HowItWorksTeaser />
+      <WhyCompareSection />
+    </div>
   )
 }

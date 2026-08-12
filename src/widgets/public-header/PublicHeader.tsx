@@ -9,7 +9,7 @@ export async function PublicHeader() {
   const user = await getCurrentUser()
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/85 py-4 backdrop-blur-md">
+    <header className="bg-background/85 sticky top-0 z-50 border-b py-4 backdrop-blur-md">
       <div className="container flex items-center justify-between">
         <Logo />
 
@@ -21,16 +21,24 @@ export async function PublicHeader() {
 
         <MobileMenu isAuthenticated={Boolean(user)} />
 
-        {user ? (
+        {user?.role === 'USER' && (
           <div className="hidden md:block">
-            <Link href="/dashboard" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            <Link href="/dashboard" className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors">
               Dashboard
             </Link>
           </div>
-        ) : (
+        )}
+
+        {user?.role === 'ADMIN' && (
+          <Link href="/admin" className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors">
+            Dashboard
+          </Link>
+        )}
+
+        {!user && (
           <Link
             href="/login"
-            className="hidden h-9 items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-xs transition-colors hover:bg-primary/90 md:inline-flex"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 hidden h-9 items-center rounded-lg px-4 py-2 text-sm font-medium shadow-xs transition-colors md:inline-flex"
           >
             Get Started
           </Link>
