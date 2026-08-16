@@ -21,7 +21,7 @@ export const useLoginForm = () => {
 
     if (result.success) {
       toast.success(result.message)
-      router.replace('/dashboard')
+      router.replace(result.redirectTo ?? '/dashboard')
       return
     }
 

@@ -2,6 +2,7 @@
 
 import { AuthError } from 'next-auth'
 import { signIn } from '@/auth'
+import prisma from '@/lib/prisma'
 import { limitLoginByIp } from '@/lib/rate-limit'
 import { loginFormSchema } from './schema'
 
@@ -36,9 +37,19 @@ export const loginUser = async (data: unknown) => {
       redirect: false
     })
 
+    const user = await prisma.user.findUnique({
+      where: {
+        email: parsedData.data.email
+      },
+      select: {
+        role: true
+      }
+    })
+
     return {
       success: true,
-      message: 'Logged in successfully.'
+      message: 'Logged in successfully.',
+      redirectTo: user?.role === 'ADMIN' ? '/admin/dashboard' : '/dashboard'
     }
   } catch (error) {
     if (error instanceof AuthError) {

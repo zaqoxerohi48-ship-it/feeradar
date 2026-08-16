@@ -16,6 +16,7 @@ export async function getCurrentUser() {
     },
     select: {
       id: true,
+      email: true,
       role: true,
       plan: true
     }
@@ -64,7 +65,7 @@ export async function requireGuest() {
   }
 
   if (user.role === 'ADMIN') {
-    redirect('/admin')
+    redirect('/admin/dashboard')
   }
 
   redirect('/dashboard')

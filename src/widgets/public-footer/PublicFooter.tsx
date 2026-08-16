@@ -1,3 +1,4 @@
+import { NavLink } from '@/widgets/public-header/NavLink'
 import { Logo } from './Logo'
 
 export const PublicFooter = () => {
@@ -5,7 +6,10 @@ export const PublicFooter = () => {
     <footer className="bg-card/70 mt-16 border-t">
       <div className="text-muted-foreground container flex flex-col gap-2 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
         <Logo />
-        <p>Reliable fee and card comparison data.</p>
+        <nav aria-label="Legal links" className="flex gap-4">
+          <NavLink href="/legal/terms" text="Terms" />
+          <NavLink href="/legal/policy" text="Privacy Policy" />
+        </nav>
       </div>
     </footer>
   )

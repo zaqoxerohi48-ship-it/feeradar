@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider, environmentManager } from '@tanstack/react-query'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import type { ReactNode } from 'react'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 function makeQueryClient() {
   return new QueryClient()
@@ -31,7 +32,9 @@ export function Providers({ children }: ProvidersProps) {
 
   return (
     <NuqsAdapter>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>{children}</TooltipProvider>
+      </QueryClientProvider>
     </NuqsAdapter>
   )
 }

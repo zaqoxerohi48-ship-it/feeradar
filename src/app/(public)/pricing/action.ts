@@ -1,38 +1,49 @@
 'use server'
 
 import { auth } from '@/auth'
+import type { ActionResult } from '@/lib/action-result'
 import prisma from '@/lib/prisma'
 import { stripe } from '@/lib/stripe'
 
-export async function createCheckout(planId: number) {
+export async function createCheckout(planId: number): Promise<ActionResult<{ url: string }>> {
   const authSession = await auth()
 
   if (!authSession?.user.id) {
-    throw new Error('User not authenticated')
+    return { success: false, message: 'User not authorized' }
   }
 
-  const user = await prisma.user.findUnique({
-    where: {
-      id: authSession.user.id
-    }
-  })
+  const [plan, user] = await Promise.all([
+    prisma.plan.findUnique({ where: { id: planId } }),
+    prisma.user.findUnique({
+      where: { id: authSession.user.id },
+      select: { planId: true }
+    })
+  ])
 
   if (!user) {
-    throw new Error('User not found')
+    return { success: false, message: 'User not found' }
   }
 
-  const plan = await prisma.plan.findUnique({ where: { id: planId } })
-
   if (!plan) {
-    throw new Error('Plan not found')
+    return { success: false, message: 'Plan not found' }
+  }
+
+  if (user.planId === plan.id) {
+    return { success: false, message: 'You already have this plan' }
   }
 
   if (plan.priceCents === 0) {
-    throw new Error('Free plans are not available for checkout')
+    return { success: false, message: 'Free plans are not available for checkout' }
   }
 
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
+
+    metadata: {
+      userId: authSession.user.id,
+      planId: String(plan.id)
+    },
+
     line_items: [
       {
         price_data: {
@@ -46,13 +57,24 @@ export async function createCheckout(planId: number) {
         quantity: 1
       }
     ],
-    success_url: `${process.env.DOMAIN_URL}/dashboard?payment=success`,
+    success_url: `${process.env.DOMAIN_URL}/dashboard`,
     cancel_url: `${process.env.DOMAIN_URL}/pricing`
   })
 
   if (!session.url) {
-    throw new Error('Stripe Checkout URL not found')
+    return { success: false, message: 'Stripe Checkout URL not found' }
   }
 
-  return session.url
+  await prisma.order.create({
+    data: {
+      status: 'PENDING',
+      amountCents: plan.priceCents,
+      currency: session.currency ?? 'usd',
+      userId: authSession.user.id,
+      planId: plan.id,
+      stripeCheckoutSessionId: session.id
+    }
+  })
+
+  return { success: true, data: { url: session.url } }
 }

@@ -1,23 +1,21 @@
 import { Check } from 'lucide-react'
 import Link from 'next/link'
-import { auth } from '@/auth'
 import { Plan } from '@/generated/prisma/client'
 import { CheckoutButton } from './CheckoutButton'
 
 type Props = {
   plan: Plan
+  currentPlanId?: number
+  isAuth: boolean
 }
 
-export async function PricingCard({ plan }: Props) {
+export function PricingCard({ plan, currentPlanId, isAuth }: Props) {
   const isFree = plan.priceCents === 0
   const price = isFree ? '$0' : `$${plan.priceCents / 100}`
-
-  const session = await auth()
-
-  const isAuth = !!session?.user?.id
+  const isCurrentPlan = currentPlanId === plan.id
 
   return (
-    <article className={`bg-card relative flex flex-col gap-6 rounded-2xl border p-8 shadow-sm ${plan.mostPopular ? 'border-primary/30' : ''}`}>
+    <div className={`bg-card relative flex flex-col gap-6 rounded-2xl border p-8 shadow-sm ${plan.mostPopular ? 'border-primary/30' : ''}`}>
       {plan.mostPopular ? (
         <span className="border-primary/15 bg-secondary text-primary absolute -top-3 left-8 rounded-full border px-3 py-1 text-xs font-medium">
           Most valuable
@@ -42,24 +40,41 @@ export async function PricingCard({ plan }: Props) {
         ))}
       </ul>
 
-      {isFree && isAuth ? (
+      {isCurrentPlan ? (
         <button
           type="button"
           disabled
           className="bg-muted text-muted-foreground w-full cursor-not-allowed rounded-lg border px-4 py-2.5 text-center text-sm font-medium opacity-80"
         >
-          Current free plan
+          Current plan
         </button>
       ) : isFree ? (
+        isAuth ? (
+          <button
+            type="button"
+            disabled
+            className="bg-muted text-muted-foreground w-full cursor-not-allowed rounded-lg border px-4 py-2.5 text-center text-sm font-medium opacity-80"
+          >
+            Included in your account
+          </button>
+        ) : (
+          <Link
+            href="/login"
+            className="bg-card text-foreground hover:bg-muted block rounded-lg border px-4 py-2.5 text-center text-sm font-medium shadow-xs transition-colors"
+          >
+            Sign in to start free
+          </Link>
+        )
+      ) : !isAuth ? (
         <Link
           href="/login"
-          className="bg-card text-foreground hover:bg-muted block rounded-lg border px-4 py-2.5 text-center text-sm font-medium shadow-xs transition-colors"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 block rounded-lg px-4 py-2.5 text-center text-sm font-medium shadow-xs transition-colors"
         >
-          Sign in to start free
+          Sign in to buy
         </Link>
       ) : (
-        <CheckoutButton planId={plan.id} isAuth={isAuth} />
+        <CheckoutButton planId={plan.id} />
       )}
-    </article>
+    </div>
   )
 }

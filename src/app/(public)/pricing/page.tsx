@@ -1,11 +1,21 @@
 import { Bell, FileDown, Star } from 'lucide-react'
+import { auth } from '@/auth'
 import prisma from '@/lib/prisma'
 import { PricingCard } from './ui/Pricingcard'
 
 export default async function PricingPage() {
-  const plans = await prisma.plan.findMany({
-    orderBy: { priceCents: 'asc' }
-  })
+  const session = await auth()
+  const [plans, currentUser] = await Promise.all([
+    prisma.plan.findMany({
+      orderBy: { priceCents: 'asc' }
+    }),
+    session?.user?.id
+      ? prisma.user.findUnique({
+          where: { id: session.user.id },
+          select: { planId: true }
+        })
+      : null
+  ])
 
   return (
     <section className="container flex flex-col gap-10 py-10 sm:py-16">
@@ -17,7 +27,7 @@ export default async function PricingPage() {
 
       <div className="grid gap-6 sm:grid-cols-2">
         {plans.map((plan) => (
-          <PricingCard key={plan.id} plan={plan} />
+          <PricingCard key={plan.id} plan={plan} currentPlanId={currentUser?.planId} isAuth={!!session?.user?.id} />
         ))}
       </div>
 

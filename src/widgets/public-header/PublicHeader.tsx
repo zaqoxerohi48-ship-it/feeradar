@@ -30,7 +30,7 @@ export async function PublicHeader() {
         )}
 
         {user?.role === 'ADMIN' && (
-          <Link href="/admin" className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors">
+          <Link href="/admin/dashboard" className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors">
             Dashboard
           </Link>
         )}
