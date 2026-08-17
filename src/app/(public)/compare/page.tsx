@@ -4,9 +4,9 @@ import { Suspense } from 'react'
 import { buildMetadata } from '@/lib/metadata'
 import prisma from '@/lib/prisma'
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
+import { SearchInput } from '@/shared/ui/SearchInput'
 import { CompareCard } from './ui/CompareCard'
 import { CompareCardSkeleton } from './ui/CompareCardSkeleton'
-import { SearchInput } from './ui/SearchInput'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Compare Crypto Cards',
@@ -57,7 +57,7 @@ export default async function ComparePage({ searchParams }: Props) {
           Browse active crypto card providers and open a detailed comparison page for supported countries, payment options and card availability.
         </p>
 
-        <SearchInput />
+        <SearchInput placeholder="Search crypto card..." />
       </section>
 
       <Suspense fallback={<CompareCardSkeleton />}>

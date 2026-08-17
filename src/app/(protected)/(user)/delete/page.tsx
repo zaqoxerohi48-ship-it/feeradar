@@ -1,3 +1,3 @@
 export default function DeletePage() {
-  return <div></div>
+  return <div>Delete Account</div>
 }

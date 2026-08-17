@@ -37,13 +37,13 @@ export const adminSidebarLinks: SidebarLink[] = [
     icon: Shield
   },
   {
-    name: 'Create orders',
-    href: '/admin/create-orders',
+    name: 'Orders',
+    href: '/admin/orders',
     icon: ShoppingCart
   },
   {
-    name: 'Edit users',
-    href: '/admin/edit-users',
+    name: 'All users',
+    href: '/admin/all-users',
     icon: Users
   }
 ]

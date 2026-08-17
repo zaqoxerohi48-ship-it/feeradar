@@ -45,7 +45,7 @@ export function ProtectedSidebar({ role, userEmail }: ProtectedSidebarProps) {
         <SidebarGroup>
           <SidebarGroupLabel>{userEmail}</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="flex flex-col gap-2">
               {links.map((link) => {
                 const Icon = link.icon
                 const isActive = pathname === link.href

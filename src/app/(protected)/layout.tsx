@@ -18,7 +18,7 @@ export default async function ProtectedLayout({
           <SidebarTrigger />
         </header>
 
-        {children}
+        <section className="container flex flex-col gap-6 py-10">{children}</section>
       </SidebarInset>
     </SidebarProvider>
   )

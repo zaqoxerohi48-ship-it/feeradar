@@ -5,7 +5,11 @@ import { debounce, parseAsString, useQueryState } from 'nuqs'
 import { useTransition } from 'react'
 import { Input } from '@/components/ui/input'
 
-export function SearchInput() {
+type Props = {
+  placeholder?: string
+}
+
+export function SearchInput({ placeholder = 'Search...' }: Props) {
   const [isPending, startTransition] = useTransition()
 
   const [search, setSearch] = useQueryState(
@@ -16,6 +20,16 @@ export function SearchInput() {
     })
   )
 
+  const [, setPage] = useQueryState('page')
+
+  const handleSearch = (value: string) => {
+    setPage(null)
+
+    setSearch(value || null, {
+      limitUrlUpdates: value ? debounce(300) : undefined
+    })
+  }
+
   return (
     <div className="relative w-full max-w-xs">
       <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2" />
@@ -24,13 +38,9 @@ export function SearchInput() {
         type="search"
         value={search}
         maxLength={32}
-        placeholder="Search crypto card..."
+        placeholder={placeholder}
         className="pr-9 pl-9"
-        onChange={(e) =>
-          setSearch(e.target.value || null, {
-            limitUrlUpdates: debounce(300)
-          })
-        }
+        onChange={(e) => handleSearch(e.target.value)}
       />
 
       {isPending ? (
@@ -39,7 +49,7 @@ export function SearchInput() {
         search && (
           <button
             type="button"
-            onClick={() => setSearch(null)}
+            onClick={() => handleSearch('')}
             className="text-muted-foreground hover:text-foreground absolute top-1/2 right-3 -translate-y-1/2"
           >
             <X className="size-4" />
