@@ -17,7 +17,7 @@ export const sendVerificationEmail = async ({ email, domainUrl, resendFromEmail 
   const { error } = await resend.emails.send({
     from: resendFromEmail,
     to: email,
-    subject: 'Verify your FeeRadar account',
+    subject: 'Verify your FeeWatch account',
     react: createElement(VerifyEmail, {
       verificationUrl
     })

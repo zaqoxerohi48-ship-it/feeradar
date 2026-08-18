@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
-const SITE_NAME = 'FeeRadar'
+const SITE_NAME = 'FeeWatch'
 const SITE_URL = process.env.DOMAIN_URL
-const DEFAULT_DESCRIPTION = 'Track blockchain fees and crypto card fee rates with FeeRadar'
+const DEFAULT_DESCRIPTION = 'Track blockchain fees, crypto card rates, and transaction costs in one place'
 const DEFAULT_OG_IMAGE = '/og-image.png'
 const DEFAULT_LOCALE = 'en_US'
 

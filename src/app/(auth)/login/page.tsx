@@ -11,7 +11,7 @@ export default async function LoginPage() {
         <div className="mb-8 text-center">
           <p className="text-3xl font-bold tracking-tight">Welcome back</p>
 
-          <p className="text-muted-foreground mt-2 text-sm">Sign in to manage cards, fees, and your FeeRadar account.</p>
+          <p className="text-muted-foreground mt-2 text-sm">Sign in to manage cards, fees, and your FeeWatch account.</p>
         </div>
 
         <LoginForm />

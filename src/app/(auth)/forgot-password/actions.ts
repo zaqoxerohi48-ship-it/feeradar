@@ -64,7 +64,7 @@ export async function forgotPassword(data: unknown) {
   const { error } = await resend.emails.send({
     from: resendFromEmail,
     to: email,
-    subject: 'Reset your FeeRadar password',
+    subject: 'Reset your FeeWatch password',
     react: createElement(ResetPasswordEmail, {
       verificationUrl
     })

@@ -9,13 +9,13 @@ export default function VerifyEmail({ verificationUrl }: VerifyEmailProps) {
     <Html lang="en">
       <Head />
 
-      <Preview>Verify your FeeRadar email address</Preview>
+      <Preview>Verify your FeeWatch email address</Preview>
 
       <Body style={styles.body}>
         <Container style={styles.container}>
           <Heading style={styles.heading}>Verify your email</Heading>
 
-          <Text style={styles.text}>Confirm your email address to finish creating your FeeRadar account.</Text>
+          <Text style={styles.text}>Confirm your email address to finish creating your FeeWatch account.</Text>
 
           <Section style={styles.buttonSection}>
             <Button href={verificationUrl} style={styles.button}>
@@ -27,12 +27,12 @@ export default function VerifyEmail({ verificationUrl }: VerifyEmailProps) {
 
           <Hr style={styles.divider} />
 
-          <Text style={styles.footer}>If you didn&apos;t create a FeeRadar account, you can safely ignore this email.</Text>
+          <Text style={styles.footer}>If you didn&apos;t create a FeeWatch account, you can safely ignore this email.</Text>
 
           <Text style={styles.footer}>
             Need help?{' '}
-            <Link href="mailto:support@notifications.feeradar.com" style={styles.link}>
-              Contact FeeRadar support
+            <Link href="mailto:support@notifications.feewatch.com" style={styles.link}>
+              Contact FeeWatch support
             </Link>
           </Text>
         </Container>

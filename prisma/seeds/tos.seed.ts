@@ -1,11 +1,11 @@
 import 'dotenv/config'
 import prisma from '@/lib/prisma'
-import { privacyPolicy } from '../mocks/mocks'
+import { termsUsage } from '../mocks/mocks'
 
 async function tos() {
-  await prisma.privacyPolicy.create({
+  await prisma.termsPolicy.create({
     data: {
-      content: privacyPolicy
+      content: termsUsage
     }
   })
 }

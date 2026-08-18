@@ -1,33 +1,34 @@
+'use server'
+
 import { Ratelimit } from '@upstash/ratelimit'
 import { headers } from 'next/headers'
-import 'server-only'
 import { redis } from '@/lib/redis'
 
 const loginRateLimit = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(5, '1 m'),
-  prefix: 'feeradar:login',
+  prefix: 'feewatch:login',
   analytics: false
 })
 
 const registerRateLimit = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(5, '1 m'),
-  prefix: 'feeradar:register',
+  prefix: 'feewatch:register',
   analytics: false
 })
 
 const forgotPasswordRateLimit = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(5, '1 m'),
-  prefix: 'feeradar:forgot-password',
+  prefix: 'feewatch:forgot-password',
   analytics: false
 })
 
 const resetPasswordRateLimit = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(5, '1 m'),
-  prefix: 'feeradar:reset-password',
+  prefix: 'feewatch:reset-password',
   analytics: false
 })
 

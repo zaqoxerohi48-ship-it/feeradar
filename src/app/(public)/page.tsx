@@ -9,7 +9,7 @@ import { HeroSectionSkeleton } from './_sections/ui/HeroSectionSkeleton'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Crypto Fee Tracker & Card Fee Comparison',
-  description: 'Track blockchain transaction fees and compare crypto card fee rates with FeeRadar.',
+  description: 'Track blockchain transaction fees and compare crypto card fee rates with FeeWatch.',
   path: '/'
 })
 

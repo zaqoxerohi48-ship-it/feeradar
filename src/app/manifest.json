@@ -1,6 +1,6 @@
 {
-  "name": "FeeRadar",
-  "short_name": "FeeRadar",
+  "name": "FeeWatch",
+  "short_name": "FeeWatch",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

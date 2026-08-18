@@ -37,7 +37,7 @@ export function ProtectedSidebar({ role, userEmail }: ProtectedSidebarProps) {
     <Sidebar>
       <SidebarHeader className="border-b">
         <Link href="/" className="flex h-10 items-center gap-2 px-2">
-          <span className="truncate text-sm font-semibold">FeeRadar</span>
+          <span className="truncate text-sm font-semibold">FeeWatch</span>
         </Link>
       </SidebarHeader>
 

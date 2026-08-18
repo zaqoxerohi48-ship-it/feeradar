@@ -5,21 +5,21 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
     </h1>
 
     <p className="text-muted-foreground leading-7">
-      This privacy policy applies to the FeeRadar app for mobile devices and
-      Windows devices, together with any related services operated by{' '}
+      This privacy policy applies to the FeeWatch app for mobile devices and
+      Windows devices, together with any related services operated by
       <a
         href="mailto:zaqoxerohi48@gmail.com"
         className="text-foreground underline underline-offset-4 hover:no-underline"
       >
         zaqoxerohi48@gmail.com
-      </a>{' '}
-      (collectively, the "Application").{' '}
+      </a>
+      (collectively, the "Application").
       <a
         href="mailto:zaqoxerohi48@gmail.com"
         className="text-foreground underline underline-offset-4 hover:no-underline"
       >
         zaqoxerohi48@gmail.com
-      </a>{' '}
+      </a>
       is hereby referred to as the "Service Provider".
     </p>
 
@@ -82,7 +82,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
         <li>
           <span className="text-foreground font-medium">
             Geolocation Services:
-          </span>{' '}
+          </span>
           The Service Provider may use location data to provide location-based
           features or content.
         </li>
@@ -90,7 +90,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
         <li>
           <span className="text-foreground font-medium">
             Analytics and Improvements:
-          </span>{' '}
+          </span>
           Aggregated location data may help the Service Provider understand
           usage patterns and improve performance.
         </li>
@@ -98,7 +98,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
         <li>
           <span className="text-foreground font-medium">
             Third-Party Services:
-          </span>{' '}
+          </span>
           Location data may be shared with third-party services used to support
           Application functionality, subject to this privacy policy and
           applicable law.
@@ -115,7 +115,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
         You may request access to, correction of, or deletion of your personal
         data held by the Service Provider. To exercise these rights, or to
         withdraw consent where processing is based on consent, contact the
-        Service Provider at{' '}
+        Service Provider at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -140,7 +140,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
       </p>
 
       <p className="text-muted-foreground leading-7">
-        To exercise your CCPA/CPRA rights, contact the Service Provider at{' '}
+        To exercise your CCPA/CPRA rights, contact the Service Provider at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -273,7 +273,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
 
       <p className="text-muted-foreground leading-7">
         To request deletion of your personal data, withdraw consent, or exercise
-        any of your rights, contact the Service Provider at{' '}
+        any of your rights, contact the Service Provider at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -298,7 +298,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
         <li>
           <span className="text-foreground font-medium">
             User Provided Data:
-          </span>{' '}
+          </span>
           Retained for the duration of your use of the Application plus 12
           months thereafter, unless longer retention is required by law.
         </li>
@@ -306,7 +306,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
         <li>
           <span className="text-foreground font-medium">
             Automatically Collected Data:
-          </span>{' '}
+          </span>
           Retained for up to 24 months from collection, unless longer retention
           is required for legal compliance.
         </li>
@@ -314,14 +314,14 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
         <li>
           <span className="text-foreground font-medium">
             Aggregated and Anonymized Data:
-          </span>{' '}
+          </span>
           Retained indefinitely as it no longer identifies you.
         </li>
 
         <li>
           <span className="text-foreground font-medium">
             Data required for legal compliance:
-          </span>{' '}
+          </span>
           Retained as long as required by applicable law.
         </li>
       </ul>
@@ -333,7 +333,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
 
       <p className="text-muted-foreground leading-7">
         If you want the Service Provider to delete User Provided Data submitted
-        through the Application, please contact{' '}
+        through the Application, please contact
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -429,7 +429,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
 
       <p className="text-muted-foreground leading-7">
         Previous versions of this Privacy Policy will be maintained and made
-        available upon request by contacting the Service Provider at{' '}
+        available upon request by contacting the Service Provider at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -465,7 +465,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
       <p className="text-muted-foreground leading-7">
         If you have any questions regarding privacy while using the Application,
         or have questions about the practices, please contact the Service
-        Provider via email at{' '}
+        Provider via email at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -478,7 +478,7 @@ export const privacyPolicy = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px
 
     <div className="border-t pt-6">
       <p className="text-muted-foreground text-sm">
-        This privacy policy page was generated by{' '}
+        This privacy policy page was generated by
         <a
           href="https://app-privacy-policy-generator.nisrulz.com/"
           target="_blank"
@@ -500,21 +500,21 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
     </h1>
 
     <p className="text-muted-foreground leading-7">
-      These terms and conditions apply to the FeeRadar app for mobile devices
-      and Windows devices, together with any related services operated by{' '}
+      These terms and conditions apply to the FeeWatch app for mobile devices
+      and Windows devices, together with any related services operated by
       <a
         href="mailto:zaqoxerohi48@gmail.com"
         className="text-foreground underline underline-offset-4 hover:no-underline"
       >
         zaqoxerohi48@gmail.com
-      </a>{' '}
-      (collectively, the "Application").{' '}
+      </a>
+      (collectively, the "Application").
       <a
         href="mailto:zaqoxerohi48@gmail.com"
         className="text-foreground underline underline-offset-4 hover:no-underline"
       >
         zaqoxerohi48@gmail.com
-      </a>{' '}
+      </a>
       is hereby referred to as the "Service Provider".
     </p>
 
@@ -713,7 +713,7 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
 
       <p className="text-muted-foreground leading-7">
         If you believe content violates these Terms, infringes your rights, or
-        is unlawful, you may report it to the Service Provider at{' '}
+        is unlawful, you may report it to the Service Provider at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -744,13 +744,13 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
 
       <p className="text-muted-foreground leading-7">
         Users affected by moderation decisions may contact the Service Provider
-        at{' '}
+        at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
         >
           zaqoxerohi48@gmail.com
-        </a>{' '}
+        </a>
         to request further review.
       </p>
 
@@ -1059,7 +1059,7 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
         <p className="text-muted-foreground leading-7">
           The Service Provider maintains a single point of contact for direct
           communication with EU authorities and recipients of the service,
-          reachable at{' '}
+          reachable at
           <a
             href="mailto:zaqoxerohi48@gmail.com"
             className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -1150,7 +1150,7 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
         </p>
 
         <p className="text-muted-foreground leading-7">
-          Reports are made available upon request at{' '}
+          Reports are made available upon request at
           <a
             href="mailto:zaqoxerohi48@gmail.com"
             className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -1214,7 +1214,7 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
 
       <p className="text-muted-foreground leading-7">
         Previous versions of these Terms and Conditions will be maintained and
-        made available upon request by contacting the Service Provider at{' '}
+        made available upon request by contacting the Service Provider at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -1232,7 +1232,7 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
 
       <p className="text-muted-foreground leading-7">
         If you have any questions or suggestions about the Terms and Conditions,
-        please do not hesitate to contact the Service Provider at{' '}
+        please do not hesitate to contact the Service Provider at
         <a
           href="mailto:zaqoxerohi48@gmail.com"
           className="text-foreground underline underline-offset-4 hover:no-underline"
@@ -1245,7 +1245,7 @@ export const termsUsage = `<div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 
 
     <div className="border-t pt-6">
       <p className="text-muted-foreground text-sm">
-        This Terms & Conditions page was generated by{' '}
+        This Terms & Conditions page was generated by
         <a
           href="https://app-privacy-policy-generator.nisrulz.com/"
           target="_blank"

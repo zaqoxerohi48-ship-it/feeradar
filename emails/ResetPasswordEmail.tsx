@@ -9,13 +9,13 @@ export default function ResetPasswordEmail({ verificationUrl }: ResetPasswordEma
     <Html lang="en">
       <Head />
 
-      <Preview>Reset your FeeRadar password</Preview>
+      <Preview>Reset your FeeWatch password</Preview>
 
       <Body style={styles.body}>
         <Container style={styles.container}>
           <Heading style={styles.heading}>Reset your password</Heading>
 
-          <Text style={styles.text}>We received a request to reset the password for your FeeRadar account.</Text>
+          <Text style={styles.text}>We received a request to reset the password for your FeeWatch account.</Text>
 
           <Section style={styles.buttonSection}>
             <Button href={verificationUrl} style={styles.button}>
@@ -33,8 +33,8 @@ export default function ResetPasswordEmail({ verificationUrl }: ResetPasswordEma
 
           <Text style={styles.footer}>
             Need help?{' '}
-            <Link href="mailto:support@notifications.feeradar.com" style={styles.link}>
-              Contact FeeRadar support
+            <Link href="mailto:support@notifications.feewatch.com" style={styles.link}>
+              Contact FeeWatch support
             </Link>
           </Text>
         </Container>

@@ -1,6 +1,6 @@
-# FeeRadar
+# FeeWatch
 
-FeeRadar is a full-stack web application for comparing crypto card fees and tracking blockchain gas fees.
+FeeWatch is a full-stack web application for comparing crypto card fees and tracking blockchain gas fees.
 
 This is my first independent full-stack project. I mainly work with React and Vue on the frontend, so this project is also a way for me to practice backend development, databases, authentication, and server-side logic.
 
