@@ -1,11 +1,13 @@
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Metadata } from 'next'
-import { cookies } from 'next/headers'
 import { Geist } from 'next/font/google'
+import { cookies } from 'next/headers'
 import { Toaster } from 'sonner'
 import { rootMetadata } from '@/lib/metadata'
+import { CookieModal } from '@/widgets/cookie-modal/CookieModal'
 import { AnalyticsGate } from '@/widgets/cookie-modal/analytics-gate'
 import { COOKIE_CONSENT_KEY, type CookieConsent } from '@/widgets/cookie-modal/constants'
-import { CookieModal } from '@/widgets/cookie-modal/CookieModal'
 import './globals.css'
 import { Providers } from './providers'
 
@@ -39,6 +41,8 @@ export default async function RootLayout({
         <CookieModal consent={consent} />
         <AnalyticsGate consent={consent} />
         <Toaster />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
