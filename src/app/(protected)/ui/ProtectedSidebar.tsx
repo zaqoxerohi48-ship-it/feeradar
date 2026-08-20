@@ -15,7 +15,8 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem
+  SidebarMenuItem,
+  useSidebar
 } from '@/components/ui/sidebar'
 import { adminSidebarLinks, userSidebarLinks } from '../mocks/sidebar-links'
 
@@ -27,6 +28,7 @@ type ProtectedSidebarProps = {
 export function ProtectedSidebar({ role, userEmail }: ProtectedSidebarProps) {
   const pathname = usePathname()
   const links = role === 'ADMIN' ? adminSidebarLinks : userSidebarLinks
+  const { setOpenMobile } = useSidebar()
 
   const handleLogout = async () => {
     toast.success('Logged out successfully.')
@@ -56,7 +58,7 @@ export function ProtectedSidebar({ role, userEmail }: ProtectedSidebarProps) {
                       tooltip={link.name}
                       isActive={isActive}
                       render={
-                        <Link href={link.href}>
+                        <Link href={link.href} onClick={() => setOpenMobile(false)}>
                           <Icon />
                           <span>{link.name}</span>
                         </Link>

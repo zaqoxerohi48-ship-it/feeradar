@@ -1,4 +1,4 @@
-import { CreditCard, LayoutDashboard, Settings, Shield, ShoppingCart, Trash2, Users } from 'lucide-react'
+import { CreditCard, LayoutDashboard, Shield, ShoppingCart, Trash2, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 type SidebarLink = {
@@ -18,11 +18,7 @@ export const userSidebarLinks: SidebarLink[] = [
     href: '/billing',
     icon: CreditCard
   },
-  {
-    name: 'Settings',
-    href: '/settings',
-    icon: Settings
-  },
+
   {
     name: 'Delete account',
     href: '/delete',

@@ -1,65 +1,64 @@
-# FeeWatch
+# FeeRadar
 
-FeeWatch is a full-stack web application for comparing crypto card fees and tracking blockchain gas fees.
-
-This is my first independent full-stack project. I mainly work with React and Vue on the frontend, so this project is also a way for me to practice backend development, databases, authentication, and server-side logic.
-
-## Tech Stack
-
-- Next.js
-- TypeScript
-- pnpm
-- Prisma
-- Neon PostgreSQL
-- Auth.js
-- TanStack Query
-- Tailwind CSS
-- shadcn/ui
+Full-stack web application built with **Next.js 16**, **React 19**, **TypeScript**, **PostgreSQL** and **Prisma**.
 
 ## Features
 
-- Crypto card fee comparison
-- Gas fee tracking
-- Network congestion information
-- Authentication
-- Database integration
+- Authentication & authorization
+- User and admin dashboards
+- Stripe payments
+- PostgreSQL + Prisma
+- Transactional emails with Resend + React Email
+- Rate limiting with Upstash Redis
+- Forms with React Hook Form + Zod
+- Charts and statistics
+- Dark / light theme
 - Responsive UI
+- Vercel Analytics & Speed Insights
+
+## Tech Stack
+
+**Frontend:** Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, TanStack Query
+
+**Backend:** Next.js Server Actions / Route Handlers, Prisma, PostgreSQL, NextAuth
+
+**Services:** Stripe, Resend, Upstash Redis, Vercel
+
+## Demo
+
+🌐 **Live:** `https://feeradar.xyz`
+
+Demo admin account:
+
+```text
+Email: demo@feeradar.xyz
+Password: your-demo-password
+```
+
+> Demo account has restricted permissions and is intended only for exploring the admin dashboard.
 
 ## Getting Started
 
-Install dependencies:
-
 ```bash
+git clone YOUR_REPOSITORY_URL
+cd YOUR_REPOSITORY
 pnpm install
-```
-
-Create a `.env` file and add the required environment variables:
-
-```env
-DATABASE_URL="your-database-url"
-AUTH_SECRET="your-auth-secret"
-```
-
-Generate Prisma Client:
-
-```bash
-pnpm prisma generate
-```
-
-Run database migrations:
-
-```bash
 pnpm prisma migrate dev
-```
-
-Start the development server:
-
-```bash
 pnpm dev
 ```
 
-Open http://localhost:3000.
+Create a `.env` file and add the required database, authentication, Stripe, Resend and Upstash credentials.
 
-## Status
+## Scripts
 
-The project is currently under development.
+```bash
+pnpm dev
+pnpm build
+pnpm start
+pnpm lint
+pnpm email:dev
+```
+
+## About
+
+This project demonstrates a production-style **full-stack Next.js application** with authentication, database management, payments, emails, admin functionality and analytics.

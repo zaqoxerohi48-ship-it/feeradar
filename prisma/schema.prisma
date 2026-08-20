@@ -20,11 +20,14 @@ enum UserPlan {
 }
 
 model User {
-  id           String   @id @default(cuid())
-  email        String   @unique
-  passwordHash String?  @map("password_hash")
-  role         UserRole @default(USER)
-
+  id              String    @id @default(cuid())
+  email           String    @unique
+  passwordHash    String?   @map("password_hash")
+  role            UserRole  @default(USER)
+  username        String    @unique
+  dateBirth       DateTime  @map("date_birth") @db.Date
+  avatarUrl       String?   @map("avatar_url")
+  isActive        Boolean   @default(true) @map("is_active")
   emailVerifiedAt DateTime? @map("email_verified_at")
 
   planId Int  @map("plan_id")

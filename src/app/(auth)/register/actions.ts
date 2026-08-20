@@ -1,5 +1,6 @@
 'use server'
 
+import { parseDateOfBirth } from '@/lib/date-of-birth'
 import { hashPassword } from '@/lib/password'
 import prisma from '@/lib/prisma'
 import { limitRegisterByIp } from '@/lib/rate-limit'
@@ -34,6 +35,20 @@ export const registerUser = async (data: unknown) => {
 
   const email = parsedData.data.email.toLowerCase().trim()
   const passwordHash = await hashPassword(parsedData.data.password)
+  const dateBirth = parseDateOfBirth(parsedData.data.date_of_birth)
+
+  const existingUsername = await prisma.user.findUnique({
+    where: {
+      username: parsedData.data.username
+    }
+  })
+
+  if (existingUsername) {
+    return {
+      success: false,
+      message: 'An account with this username already exists.'
+    }
+  }
 
   const existingUser = await prisma.user.findUnique({
     where: {
@@ -103,7 +118,9 @@ export const registerUser = async (data: unknown) => {
 
   await prisma.user.create({
     data: {
+      username: parsedData.data.username,
       email,
+      dateBirth,
       passwordHash,
 
       plan: {
