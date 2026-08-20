@@ -57,10 +57,17 @@ export const registerUser = async (data: unknown) => {
   })
 
   if (existingUser) {
+    if (existingUser.isDeleted) {
+      return {
+        success: false,
+        message: 'If this email can be used, you’ll receive further instructions shortly.'
+      }
+    }
+
     if (existingUser.emailVerifiedAt) {
       return {
         success: false,
-        message: 'An account with this email already exists.'
+        message: 'If this email can be used, you’ll receive further instructions shortly.'
       }
     }
 

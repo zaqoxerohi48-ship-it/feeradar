@@ -20,7 +20,7 @@ export default async function DashboardPage() {
   })
 
   const profile = {
-    username: userProfile.username,
+    username: userProfile.username ?? '',
     email: userProfile.email,
     date_of_birth: dayjs(userProfile.dateBirth).format('DD/MM/YYYY'),
     avatarUrl: userProfile.avatarUrl

@@ -34,7 +34,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           where: { email }
         })
 
-        if (!user || !user.passwordHash) {
+        if (!user || !user.passwordHash || user.isDeleted) {
           throw new InvalidCredentialsError()
         }
 

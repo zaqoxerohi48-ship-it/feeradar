@@ -18,9 +18,14 @@ export async function getCurrentUser() {
       id: true,
       email: true,
       role: true,
+      isDeleted: true,
       plan: true
     }
   })
+
+  if (user?.isDeleted) {
+    return null
+  }
 
   return user
 }

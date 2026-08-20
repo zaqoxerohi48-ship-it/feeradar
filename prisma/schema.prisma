@@ -24,11 +24,12 @@ model User {
   email           String    @unique
   passwordHash    String?   @map("password_hash")
   role            UserRole  @default(USER)
-  username        String    @unique
-  dateBirth       DateTime  @map("date_birth") @db.Date
+  username        String?    @unique
+  dateBirth       DateTime?  @map("date_birth") @db.Date
   avatarUrl       String?   @map("avatar_url")
   isActive        Boolean   @default(true) @map("is_active")
   emailVerifiedAt DateTime? @map("email_verified_at")
+  isDeleted       Boolean   @default(false) @map("is_deleted")
 
   planId Int  @map("plan_id")
   plan   Plan @relation(fields: [planId], references: [id])
