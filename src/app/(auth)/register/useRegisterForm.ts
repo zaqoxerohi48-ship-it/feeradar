@@ -25,7 +25,6 @@ export const useRegisterForm = () => {
 
       if (result.success) {
         toast.success(result.message)
-        form.reset()
         router.replace('/login')
       } else {
         toast.error(result.message)
