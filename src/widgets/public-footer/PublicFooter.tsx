@@ -7,7 +7,7 @@ export const PublicFooter = () => {
       <div className="text-muted-foreground container flex flex-col gap-2 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
         <Logo />
         <nav aria-label="Legal links" className="flex gap-4">
-          <NavLink href="/legal/terms" text="Terms" />
+          <NavLink href="/legal/terms" text="Terms of Service" />
           <NavLink href="/legal/policy" text="Privacy Policy" />
         </nav>
       </div>
