@@ -33,7 +33,7 @@ export default function ResetPasswordEmail({ verificationUrl }: ResetPasswordEma
 
           <Text style={styles.footer}>
             Need help?{' '}
-            <Link href="mailto:support@notifications.feewatch.com" style={styles.link}>
+            <Link href="mailto:support@notifications.feewatch.xyz" style={styles.link}>
               Contact FeeWatch support
             </Link>
           </Text>

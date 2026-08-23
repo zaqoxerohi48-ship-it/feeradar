@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import prisma from '@/lib/prisma'
 
@@ -5,6 +6,13 @@ type Props = {
   params: Promise<{
     legal: string
   }>
+}
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true
+  }
 }
 
 export default async function LegalPage({ params }: Props) {
