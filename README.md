@@ -1,4 +1,4 @@
-# FeeRadar
+# FeeWatch
 
 Full-stack web application built with **Next.js 16**, **React 19**, **TypeScript**, **PostgreSQL** and **Prisma**.
 
@@ -26,12 +26,12 @@ Full-stack web application built with **Next.js 16**, **React 19**, **TypeScript
 
 ## Demo
 
-🌐 **Live:** `https://feeradar.xyz`
+🌐 **Live:** `https://FeeWatch.xyz`
 
 Demo admin account:
 
 ```text
-Email: demo@feeradar.xyz
+Email: demo@FeeWatch.xyz
 Password: your-demo-password
 ```
 
