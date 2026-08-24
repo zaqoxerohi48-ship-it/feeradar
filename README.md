@@ -26,12 +26,12 @@ Full-stack web application built with **Next.js 16**, **React 19**, **TypeScript
 
 ## Demo
 
-🌐 **Live:** `https://FeeWatch.xyz`
+🌐 **Live:** `https://feewatch.xyz`
 
 Demo admin account:
 
 ```text
-Email: demo@FeeWatch.xyz
+Email: demo@feewatch.xyz
 Password: your-demo-password
 ```
 
