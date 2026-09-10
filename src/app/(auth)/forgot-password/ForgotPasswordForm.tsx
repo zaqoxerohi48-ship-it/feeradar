@@ -10,8 +10,8 @@ export const ForgotPasswordForm = () => {
   const { form, onSubmit, isSubmiting } = useForgotPassword()
 
   return (
-    <form className="flex w-full flex-col items-center justify-center gap-6" onSubmit={onSubmit}>
-      <FieldGroup>
+    <form className="bg-card flex w-full flex-col items-center justify-center gap-6 rounded-2xl border p-6 shadow-sm sm:p-8" onSubmit={onSubmit}>
+      <FieldGroup className="gap-5">
         <Controller
           name="email"
           control={form.control}

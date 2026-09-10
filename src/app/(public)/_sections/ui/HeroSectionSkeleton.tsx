@@ -29,7 +29,7 @@ export function HeroSectionSkeleton() {
             </div>
           </div>
 
-          <Skeleton className="aspect-[8/7] w-full rounded-2xl" />
+          <Skeleton className="aspect-8/7 w-full rounded-2xl" />
         </div>
       </div>
     </section>

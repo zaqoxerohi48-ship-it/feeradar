@@ -16,7 +16,7 @@ export default async function RegisterPage() {
         <RegisterForm />
 
         <p className="text-muted-foreground mt-6 text-center text-sm">
-          Already have an account?
+          Already have an account?{' '}
           <Link href="/login" className="text-primary font-medium hover:underline">
             Sign in
           </Link>

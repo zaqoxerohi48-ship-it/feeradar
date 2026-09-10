@@ -9,7 +9,7 @@ type SidebarLink = {
 
 export const userSidebarLinks: SidebarLink[] = [
   {
-    name: 'Dashboard',
+    name: 'Account',
     href: '/dashboard',
     icon: LayoutDashboard
   },

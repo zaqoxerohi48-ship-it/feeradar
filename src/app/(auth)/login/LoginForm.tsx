@@ -14,8 +14,8 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <form className="w-full max-w-150" onSubmit={submitLogin}>
-      <FieldGroup>
+    <form className="bg-card w-full max-w-150 rounded-2xl border p-6 shadow-sm sm:p-8" onSubmit={submitLogin}>
+      <FieldGroup className="gap-5">
         <Controller
           name="email"
           control={form.control}

@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import prisma from '@/lib/prisma'
+import { HeroGlobe } from './ui/HeroGlobe'
 
 export async function HeroSection() {
   const cards = await prisma.cardCompany.findMany({
@@ -63,19 +63,7 @@ export async function HeroSection() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full">
-            <div className="bg-card relative overflow-hidden rounded-2xl border p-3 shadow-sm sm:p-4">
-              <Image
-                src="/images/hero-section-crypto.webp"
-                alt="Crypto cards comparison dashboard"
-                width={800}
-                height={700}
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="h-auto w-full rounded-xl object-cover"
-              />
-            </div>
-          </div>
+          <HeroGlobe />
         </div>
       </div>
     </section>

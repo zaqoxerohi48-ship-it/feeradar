@@ -16,8 +16,8 @@ export const RegisterForm = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   return (
-    <form className="w-full max-w-150" onSubmit={onSubmitRegister}>
-      <FieldGroup>
+    <form className="bg-card w-full max-w-150 rounded-2xl border p-6 shadow-sm sm:p-8" onSubmit={onSubmitRegister}>
+      <FieldGroup className="gap-5">
         <Controller
           name="username"
           control={form.control}
