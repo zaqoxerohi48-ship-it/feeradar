@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import prisma from '@/lib/prisma'
+import { getActiveCardCompanySitemapEntries } from '@/features/card-companies/data/card-companies'
 
 const DOMAIN_URL = process.env.DOMAIN_URL
 
@@ -31,15 +31,7 @@ const routes = [
 ] as const
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const cards = await prisma.cardCompany.findMany({
-    where: {
-      isActive: true
-    },
-    select: {
-      slug: true,
-      updatedAt: true
-    }
-  })
+  const cards = await getActiveCardCompanySitemapEntries()
 
   const staticRoutes = routes.map(({ path, changeFrequency, priority }) => ({
     url: new URL(path, DOMAIN_URL).toString(),

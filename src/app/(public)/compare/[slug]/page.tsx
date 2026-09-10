@@ -2,8 +2,8 @@ import { BadgeCheck, CircleDollarSign, CreditCard, Globe2, ShieldCheck, Smartpho
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { getActiveCardCompany, getActiveCardCompanyLinks } from '@/features/card-companies/data/card-companies'
 import { dayjs } from '@/lib/dayjs'
-import prisma from '@/lib/prisma'
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
 import { InfoItem } from './ui/InfoItem'
 
@@ -15,17 +15,8 @@ type Props = {
   }>
 }
 
-export const revalidate = 3600
-
 export async function generateStaticParams() {
-  const cards = await prisma.cardCompany.findMany({
-    where: {
-      isActive: true
-    },
-    select: {
-      slug: true
-    }
-  })
+  const cards = await getActiveCardCompanyLinks()
 
   return cards.map((card) => ({ slug: card.slug }))
 }
@@ -33,19 +24,7 @@ export async function generateStaticParams() {
 export default async function CompareSlugPage({ params }: Props) {
   const { slug } = await params
 
-  const card = await prisma.cardCompany.findUnique({
-    where: {
-      slug,
-      isActive: true
-    },
-    include: {
-      countries: {
-        orderBy: {
-          name: 'asc'
-        }
-      }
-    }
-  })
+  const card = await getActiveCardCompany(slug)
 
   if (!card) {
     notFound()

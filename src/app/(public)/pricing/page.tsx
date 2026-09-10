@@ -1,14 +1,13 @@
 import { Bell, FileDown, Star } from 'lucide-react'
 import { auth } from '@/auth'
+import { getPlans } from '@/features/plans/data/plans'
 import prisma from '@/lib/prisma'
 import { PricingCard } from './ui/Pricingcard'
 
 export default async function PricingPage() {
   const session = await auth()
   const [plans, currentUser] = await Promise.all([
-    prisma.plan.findMany({
-      orderBy: { priceCents: 'asc' }
-    }),
+    getPlans(),
     session?.user?.id
       ? prisma.user.findUnique({
           where: { id: session.user.id },

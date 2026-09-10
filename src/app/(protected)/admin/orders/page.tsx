@@ -11,6 +11,8 @@ type OrdersPageProps = {
   searchParams: Promise<{ page?: string; search?: string }>
 }
 
+export const instant = false
+
 export default async function OrdersPage({ searchParams }: OrdersPageProps) {
   await requireAdmin()
 

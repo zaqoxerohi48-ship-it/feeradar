@@ -40,9 +40,18 @@ export function HeroGlobe() {
     const canvas = canvasRef.current
     const container = canvas?.parentElement
     if (!canvas || !container) return
+    const originalParent = container
 
     let size = Math.max(280, container.clientWidth || 480)
     let animationFrame = 0
+    let isDestroyed = false
+    const handleContextLost = (event: Event) => {
+      event.preventDefault()
+      isDestroyed = true
+      cancelAnimationFrame(animationFrame)
+    }
+
+    canvas.addEventListener('webglcontextlost', handleContextLost, false)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const primary = getPrimaryRgb()
 
@@ -81,6 +90,8 @@ export function HeroGlobe() {
     })
 
     const render = () => {
+      if (isDestroyed) return
+
       if (!dragRef.current.active && !prefersReducedMotion) {
         rotationRef.current.phi += 0.0022
       }
@@ -104,9 +115,19 @@ export function HeroGlobe() {
     resizeObserver.observe(container)
 
     return () => {
+      isDestroyed = true
       cancelAnimationFrame(animationFrame)
       resizeObserver.disconnect()
+      canvas.removeEventListener('webglcontextlost', handleContextLost)
       globe.destroy()
+
+      // cobe reparents the canvas into an internal wrapper. Restore the
+      // original DOM shape so React Strict Mode can initialize it again.
+      const wrapper = canvas.parentElement
+      if (wrapper && wrapper !== originalParent) {
+        originalParent.append(canvas)
+        wrapper.remove()
+      }
     }
   }, [])
 

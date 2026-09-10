@@ -1,7 +1,9 @@
 'use server'
 
+import { updateTag } from 'next/cache'
 import { auth } from '@/auth'
 import type { ActionResult } from '@/lib/action-result'
+import { CACHE_TAGS } from '@/lib/cache-tags'
 import prisma from '@/lib/prisma'
 import { stripe } from '@/lib/stripe'
 
@@ -75,6 +77,8 @@ export async function createCheckout(planId: number): Promise<ActionResult<{ url
       stripeCheckoutSessionId: session.id
     }
   })
+
+  updateTag(CACHE_TAGS.adminDashboard)
 
   return { success: true, data: { url: session.url } }
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
+import { getActiveCardCompany } from '@/features/card-companies/data/card-companies'
 import { buildMetadata } from '@/lib/metadata'
-import prisma from '@/lib/prisma'
 
 type GenerateMetadataProps = {
   params: Promise<{
@@ -11,15 +11,7 @@ type GenerateMetadataProps = {
 export async function generateCompareSlugMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
   const { slug } = await params
 
-  const card = await prisma.cardCompany.findUnique({
-    where: {
-      slug,
-      isActive: true
-    },
-    select: {
-      name: true
-    }
-  })
+  const card = await getActiveCardCompany(slug)
 
   if (!card) {
     return buildMetadata({

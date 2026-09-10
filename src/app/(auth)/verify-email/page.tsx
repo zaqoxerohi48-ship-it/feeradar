@@ -8,6 +8,8 @@ type VerifyEmailPageProps = {
   }>
 }
 
+export const instant = false
+
 export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageProps) {
   const { token } = await searchParams
 

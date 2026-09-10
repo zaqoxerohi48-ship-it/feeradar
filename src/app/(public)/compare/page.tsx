@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import z from 'zod'
 import { Suspense } from 'react'
+import { getActiveCardCompanies } from '@/features/card-companies/data/card-companies'
 import { buildMetadata } from '@/lib/metadata'
 import prisma from '@/lib/prisma'
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
@@ -22,26 +23,7 @@ const searchSchema = z.object({
   search: z.string().max(32).optional()
 })
 
-export default async function ComparePage({ searchParams }: Props) {
-  const { search } = await searchParams
-
-  const searchValidation = searchSchema.safeParse({ search })
-
-  if (!searchValidation.success) {
-    return null
-  }
-
-  const cards = await prisma.cardCompany.findMany({
-    where: {
-      isActive: true,
-      ...(search && { name: { contains: search, mode: 'insensitive' } })
-    },
-    orderBy: { name: 'asc' },
-    include: {
-      _count: { select: { countries: true } }
-    }
-  })
-
+export default function ComparePage({ searchParams }: Props) {
   return (
     <div className="container flex flex-col gap-8 py-10">
       <BreadCrumbs items={[{ label: 'Home', href: '/' }, { label: 'Compare' }]} />
@@ -57,26 +39,55 @@ export default async function ComparePage({ searchParams }: Props) {
           Browse active crypto card providers and open a detailed comparison page for supported countries, payment options and card availability.
         </p>
 
-        <SearchInput placeholder="Search crypto card..." />
+        <Suspense fallback={<div className="h-10 w-full max-w-xs" />}>
+          <SearchInput placeholder="Search crypto card..." />
+        </Suspense>
       </section>
 
       <Suspense fallback={<CompareCardSkeleton />}>
-        <div className="flex flex-col gap-4">
-          <span className="bg-card text-muted-foreground w-fit rounded-full border px-3 py-1 text-xs font-medium">{cards.length} active cards</span>
-
-          {cards.length > 0 ? (
-            <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {cards.map((card) => (
-                <CompareCard key={card.id} card={card} />
-              ))}
-            </section>
-          ) : (
-            <section className="bg-card rounded-2xl border p-6 shadow-sm">
-              <p className="text-muted-foreground text-sm">No active crypto cards are available yet.</p>
-            </section>
-          )}
-        </div>
+        <CompareResults searchParams={searchParams} />
       </Suspense>
+    </div>
+  )
+}
+
+async function CompareResults({ searchParams }: Props) {
+  const { search } = await searchParams
+
+  const searchValidation = searchSchema.safeParse({ search })
+
+  if (!searchValidation.success) {
+    return null
+  }
+
+  const cards = search
+    ? await prisma.cardCompany.findMany({
+        where: {
+          isActive: true,
+          name: { contains: search, mode: 'insensitive' }
+        },
+        orderBy: { name: 'asc' },
+        include: {
+          _count: { select: { countries: true } }
+        }
+      })
+    : await getActiveCardCompanies()
+
+  return (
+    <div className="flex flex-col gap-4">
+      <span className="bg-card text-muted-foreground w-fit rounded-full border px-3 py-1 text-xs font-medium">{cards.length} active cards</span>
+
+      {cards.length > 0 ? (
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {cards.map((card) => (
+            <CompareCard key={card.id} card={card} />
+          ))}
+        </section>
+      ) : (
+        <section className="bg-card rounded-2xl border p-6 shadow-sm">
+          <p className="text-muted-foreground text-sm">No active crypto cards are available yet.</p>
+        </section>
+      )}
     </div>
   )
 }

@@ -1,4 +1,6 @@
+import { revalidateTag } from 'next/cache'
 import Stripe from 'stripe'
+import { CACHE_TAGS } from '@/lib/cache-tags'
 import prisma from '@/lib/prisma'
 import { stripe } from '@/lib/stripe'
 
@@ -66,6 +68,8 @@ export async function POST(request: Request) {
         }
       })
     ])
+
+    revalidateTag(CACHE_TAGS.adminDashboard, 'max')
   }
 
   return new Response('OK', {

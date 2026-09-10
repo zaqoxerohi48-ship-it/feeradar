@@ -1,51 +1,19 @@
 import { dayjs } from '@/lib/dayjs'
 import prisma from '@/lib/prisma'
 import { requireAdmin } from '@/lib/requireAuthRoles'
+import { ACTIVITY_DAYS, getAdminDashboardAggregates } from './data'
 import { ActivityChart } from './ui/ActivityChart'
 import { RecentOrders } from './ui/RecentOrders'
 import { RecentUsers } from './ui/RecentUsers'
 import { StatCard } from './ui/StatCard'
 
-const ACTIVITY_DAYS = 7
+export const instant = false
 
 export default async function AdminDashboardPage() {
   await requireAdmin()
 
-  const startDate = dayjs
-    .utc()
-    .subtract(ACTIVITY_DAYS - 1, 'day')
-    .startOf('day')
-
-  const [plans, users, orders, paidRevenueByCurrency, recentUsers, recentOrders, latestUsers, latestOrders] = await Promise.all([
-    prisma.plan.count(),
-    prisma.user.count(),
-    prisma.order.count(),
-    prisma.order.groupBy({
-      where: { status: 'PAID' },
-      by: ['currency'],
-      _sum: { amountCents: true },
-      _count: true
-    }),
-    prisma.user.findMany({
-      where: {
-        createdAt: {
-          gte: startDate.toDate()
-        }
-      },
-      select: {
-        createdAt: true
-      }
-    }),
-    prisma.order.findMany({
-      where: {
-        createdAt: {
-          gte: startDate.toDate()
-        }
-      },
-      select: {
-        createdAt: true
-      }
-    }),
+  const [aggregates, latestUsers, latestOrders] = await Promise.all([
+    getAdminDashboardAggregates(),
     prisma.user.findMany({
       orderBy: { createdAt: 'desc' },
       take: 5,
@@ -69,6 +37,9 @@ export default async function AdminDashboardPage() {
       }
     })
   ])
+
+  const { plans, users, orders, paidRevenueByCurrency, recentUsers, recentOrders } = aggregates
+  const startDate = dayjs.utc(aggregates.startDate)
 
   const activityData = Array.from({ length: ACTIVITY_DAYS }, (_, index) => {
     const date = startDate.add(index, 'day')

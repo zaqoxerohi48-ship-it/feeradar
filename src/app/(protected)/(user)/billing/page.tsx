@@ -11,6 +11,8 @@ type Props = {
   searchParams: Promise<{ page?: string }>
 }
 
+export const instant = false
+
 export default async function BillingPage({ searchParams }: Props) {
   const user = await requireUser()
   const { page: pageParam } = await searchParams

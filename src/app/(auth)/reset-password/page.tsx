@@ -10,6 +10,8 @@ type ResetPasswordPageProps = {
   }>
 }
 
+export const instant = false
+
 export default async function ResetPasswordPage({ searchParams }: ResetPasswordPageProps) {
   const { token } = await searchParams
   await requireGuest()

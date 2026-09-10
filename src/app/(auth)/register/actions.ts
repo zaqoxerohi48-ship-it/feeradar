@@ -1,5 +1,7 @@
 'use server'
 
+import { updateTag } from 'next/cache'
+import { CACHE_TAGS } from '@/lib/cache-tags'
 import { parseDateOfBirth } from '@/lib/date-of-birth'
 import { hashPassword } from '@/lib/password'
 import prisma from '@/lib/prisma'
@@ -143,6 +145,8 @@ export const registerUser = async (data: unknown) => {
       }
     }
   })
+
+  updateTag(CACHE_TAGS.adminDashboard)
 
   return {
     success: true,

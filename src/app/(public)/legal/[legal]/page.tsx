@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import prisma from '@/lib/prisma'
+import { getLatestLegalDocument } from '@/features/legal/data/legal-documents'
 
 type Props = {
   params: Promise<{
@@ -22,18 +22,7 @@ export default async function LegalPage({ params }: Props) {
     notFound()
   }
 
-  const document =
-    legal === 'terms'
-      ? await prisma.termsPolicy.findFirst({
-          orderBy: {
-            updatedAt: 'desc'
-          }
-        })
-      : await prisma.privacyPolicy.findFirst({
-          orderBy: {
-            updatedAt: 'desc'
-          }
-        })
+  const document = await getLatestLegalDocument(legal)
 
   if (!document) {
     notFound()

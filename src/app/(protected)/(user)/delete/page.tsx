@@ -2,6 +2,8 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import DeleteAccountForm from './DeleteAccountForm'
 
+export const instant = false
+
 export default function DeleteAccountPage() {
   return (
     <div className="flex flex-col gap-5 sm:gap-6">

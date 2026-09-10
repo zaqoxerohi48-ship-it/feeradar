@@ -2,6 +2,8 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
 import { requireAuth } from '@/lib/requireAuthRoles'
 import { ProtectedSidebar } from './ui/ProtectedSidebar'
 
+export const instant = false
+
 export default async function ProtectedLayout({
   children
 }: Readonly<{

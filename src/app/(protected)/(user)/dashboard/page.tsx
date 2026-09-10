@@ -6,6 +6,8 @@ import { requireUser } from '@/lib/requireAuthRoles'
 import AvatarForm from './ui/AvatarForm'
 import ProfileForm from './ui/ProfileForm'
 
+export const instant = false
+
 export default async function DashboardPage() {
   const user = await requireUser()
   const userProfile = await prisma.user.findUniqueOrThrow({

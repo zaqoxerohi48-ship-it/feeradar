@@ -24,7 +24,7 @@ export function HowItWorksTeaser() {
         <ol className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {steps.map((step) => (
             <li key={step.number} className="bg-card flex items-center gap-4 rounded-2xl border p-5 shadow-sm">
-              <span className="text-muted-foreground/45 text-2xl font-semibold">{step.number}</span>
+              <span className="text-muted-foreground text-2xl font-semibold">{step.number}</span>
               <span className="text-foreground text-base font-medium">{step.title}</span>
             </li>
           ))}

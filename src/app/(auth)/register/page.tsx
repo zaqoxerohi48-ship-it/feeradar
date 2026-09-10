@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { requireGuest } from '@/lib/requireAuthRoles'
 import { RegisterForm } from './RegisterForm'
 
+export const instant = false
+
 export default async function RegisterPage() {
   await requireGuest()
 

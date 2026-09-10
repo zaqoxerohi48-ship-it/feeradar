@@ -1,6 +1,8 @@
 import { PublicFooter } from '@/widgets/public-footer/PublicFooter'
 import { PublicHeader } from '@/widgets/public-header/PublicHeader'
 
+export const instant = false
+
 export default function AuthLayout({
   children
 }: Readonly<{

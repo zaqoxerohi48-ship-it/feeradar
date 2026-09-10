@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { requireGuest } from '@/lib/requireAuthRoles'
 import { LoginForm } from './LoginForm'
 
+export const instant = false
+
 export default async function LoginPage() {
   await requireGuest()
 

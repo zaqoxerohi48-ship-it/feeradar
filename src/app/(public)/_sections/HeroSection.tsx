@@ -1,17 +1,9 @@
 import Link from 'next/link'
-import prisma from '@/lib/prisma'
+import { getActiveCardCompanyLinks } from '@/features/card-companies/data/card-companies'
 import { HeroGlobe } from './ui/HeroGlobe'
 
 export async function HeroSection() {
-  const cards = await prisma.cardCompany.findMany({
-    where: {
-      isActive: true
-    },
-    select: {
-      name: true,
-      slug: true
-    }
-  })
+  const cards = await getActiveCardCompanyLinks()
 
   return (
     <section className="overflow-hidden pt-10">

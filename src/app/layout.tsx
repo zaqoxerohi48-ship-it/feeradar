@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { Toaster } from 'sonner'
+import { Suspense } from 'react'
 import { rootMetadata } from '@/lib/metadata'
 import { CookieModal } from '@/widgets/cookie-modal/CookieModal'
 import { AnalyticsGate } from '@/widgets/cookie-modal/analytics-gate'
@@ -26,24 +27,34 @@ function getCookieConsent(value?: string): CookieConsent | undefined {
   return undefined
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const cookieStore = await cookies()
-  const consent = getCookieConsent(cookieStore.get(COOKIE_CONSENT_KEY)?.value)
-
   return (
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <Providers>{children}</Providers>
-        <CookieModal consent={consent} />
-        <AnalyticsGate consent={consent} />
+        <Suspense fallback={null}>
+          <CookieConsentFeatures />
+        </Suspense>
         <Toaster />
         <Analytics />
         <SpeedInsights />
       </body>
     </html>
+  )
+}
+
+async function CookieConsentFeatures() {
+  const cookieStore = await cookies()
+  const consent = getCookieConsent(cookieStore.get(COOKIE_CONSENT_KEY)?.value)
+
+  return (
+    <>
+      <CookieModal consent={consent} />
+      <AnalyticsGate consent={consent} />
+    </>
   )
 }
